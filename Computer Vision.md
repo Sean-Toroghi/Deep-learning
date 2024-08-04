@@ -111,7 +111,10 @@ __Auto gradient parameter__
 
 Torch tensoro has the ability to compute gradient by specifying `requires_grad = True` when defining the input tensor. Then by calling `output.backward()` function, we get the gradient with respect to input x by calling `x.grad()` function.
 
+Note that Pytorch is specifically optimized to run on GPu, which gives it an edge compare with computing the same outcome via numpy.
+
 __Building a nueral network with PyTorch__
+
 
 
 - 
