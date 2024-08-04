@@ -9,7 +9,7 @@ At a high level, a neural network is a collection of nodes where each node has a
 
 $$
 \mathrm{CE}(p, y) = \begin{cases}
-    -\log(p) & \text{if } y = 1 \\ % & is your "\tab"-like command (it's a tab alignment character)
+    -\log(p) & \text{if } y = 1 \\ % & is your "\tab"-like command (it's a tab alignment character) \\
     -\log(1-p) & \text{otherwise.}
 \end{cases}
 $$
