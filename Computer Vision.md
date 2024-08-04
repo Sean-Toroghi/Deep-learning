@@ -336,8 +336,8 @@ print (f" Prediction for input {new_x}: {network_2(new_x)}")
 ```
 
 
-
-
+### Create custome loss function
+Custome Loss function can be created by defining a function that gets the $y$ and $\hat{y}$ and returns a value representing the computed loss.
 
 
 
