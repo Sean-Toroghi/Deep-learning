@@ -38,9 +38,9 @@ def feed_forward(inputs, outputs, weights):
 
 
 __Activation functions__
-- $tanh (x) =  \frac{e^x - e^{-x}}{e_x + e^{-x}}$ return value $\in \[-1,1 \]$
-- $ sigmoid (x)= \frac{1}{1 + e^{-x}}$ returns value $\in \[0,1 \]$
-
+- $tanh (x) =  \frac{e^x - e^{-x}}{e_x + e^{-x}}$ 
+- $sigmoid (x)= \frac{1}{1 + e^{-x}}$
+- Sigmoid returns value $\in \[0,1 \]$, while tanh returns value $\in \[-1,1 \]$
 
 $$ReLU = \begin{cases} 
   x & x > 0 \\ 
