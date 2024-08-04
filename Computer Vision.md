@@ -77,6 +77,19 @@ __Backpropagation__
 It starts with the loss value obtained in feedforward propagation and then updates the weights of the network in such a way that the loss value is minimized as much as possible.
 
 
-__Gradient descnet_
+__Gradient descnet__
 
+## Pytorch
 
+Building block in PyTorch is tensor, which comes in different dimensions, from 1D (scalar) to nD (multi-dim matrix). Initializing a tensor is done by running `torch.tensor([x_1, x_2, ...])`. The data type of all elements within a tensor is the same. That means if a tensor contains data of different data types (such as a Boolean, an integer, and a float), the entire tensor is coerced to the most generic data type. Even if we have a boolean False with float numbers, the False will be changed to `0.`. Some of the build in functions to initialize a tensor are: 
+- `torch.zeros((tuple_dim))`
+- `torch.ones((tuple_dim))`
+- `torch.randint(low=, high = , size = (tuple_dim))`
+- `torch.randn(tuple_dim)` to generate random numbers follow a normal distribution in given dimension
+- `torch.rand(tuple_dim)` to generate random numbers between 0 and 1 in given dimension
+
+Converting between numpy array and tensor: `torch.tensor(np.array())`
+
+__Some of the operations on tensors__
+- elementwise multiplication of a scalar by tensor x: `x * scakar_value`
+- 
