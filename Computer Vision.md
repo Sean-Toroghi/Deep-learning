@@ -43,7 +43,10 @@ __Activation functions__
 - $ sigmoid (x)= \frac{1}{1 + e^{-x}}$
 
 
-$$ReLU = \begin{cases} x & x > 0 \\ 0 & x \leq 0 \end{cases}$$
+$$ReLU = \begin{cases} 
+  x & x > 0 \\ 
+  0 & x \leq 0 
+\end{cases}$$
 
 
 ```python
