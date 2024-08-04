@@ -7,10 +7,7 @@ An ANN is a collection of tensors (weights) and mathematical operations arranged
 
 At a high level, a neural network is a collection of nodes where each node has an adjustable float value called weight and the nodes are interconnected as a graph to return outputs in a format that is dictated by the architecture of the network. A typical ANN is made up of: input, hidden, and output layers. Ouput layer could consists of one node (predict a continuous variable) or m nodes if we want to predict categorcial variables with m classes. A typical function to generate output $a$ is computed by summing bias and sum of dot product of weights and inputs: $a(x,w) =  f(w_0 + \sum w_ix_i)$
 
-$$ReLU = \begin{cases} 
-    x & x > 0 \\ 
-    0 & x \leq 0
-\end{cases}$$
+
 
 
 
@@ -44,7 +41,10 @@ $\begin{equation}\begin{cases} \Delta_{0}=0,3 \Delta_{1}+0,3\Delta_{0} \\ \Delta
 __Activation functions__
 - $tanh (x) =  \frac{e^x - e^{-x}}{e_x + e^{-x}}$
 - $ sigmoid (x)= \frac{1}{1 + e^{-x}}$
- 
+ - $$ReLU = \begin{cases} 
+    x & x > 0 \\ 
+    0 & x \leq 0
+    \end{cases}$$
 
 
 ```python
