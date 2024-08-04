@@ -38,7 +38,8 @@ def feed_forward(inputs, outputs, weights):
 __Activation functions__
 - $tanh (x) =  \frac{e^x - e^{-x}}{e_x + e^{-x}}$
 - $ sigmoid (x)= \frac{1}{1 + e^{-x}}$
-- $ ReLU = \begin{cases*} x & x> 0\\ 0 & x \leq 0 \end{cases*}$
+- $ ReLU = \begin{cases} x & x> 0 \\ 0 & x \leq 0 \end{cases}$
+
 
 ```python
 def tanh(x):
