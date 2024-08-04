@@ -8,14 +8,11 @@ An ANN is a collection of tensors (weights) and mathematical operations arranged
 At a high level, a neural network is a collection of nodes where each node has an adjustable float value called weight and the nodes are interconnected as a graph to return outputs in a format that is dictated by the architecture of the network. A typical ANN is made up of: input, hidden, and output layers. Ouput layer could consists of one node (predict a continuous variable) or m nodes if we want to predict categorcial variables with m classes. A typical function to generate output $a$ is computed by summing bias and sum of dot product of weights and inputs: $a(x,w) =  f(w_0 + \sum w_ix_i)$
 
 $$
-CE(p,y)=\left\{
-\begin{array}{ll}
--\log(p) &\text{if }y=1 \\ 
--\log(1-p) &\text{otherwise}.
-\end{array} 
-\right.
+\mathrm{CE}(p, y) = \begin{cases}
+    -\log(p) & \text{if } y = 1 \\ % & is your "\tab"-like command (it's a tab alignment character)
+    -\log(1-p) & \text{otherwise.}
+\end{cases}
 $$
-
 
 
 
