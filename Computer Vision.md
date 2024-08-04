@@ -36,6 +36,8 @@ def feed_forward(inputs, outputs, weights):
 ```
 
 __Activation functions__
+- $tanh (x) =  \frac{e^x - e^{-x}}{e_x + e^{-x}}$
+
 ```python
 def tanh(x):
     return (np.exp(x)-np.exp(-x))/(np.exp(x)+np.exp(-x))
