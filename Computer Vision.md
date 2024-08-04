@@ -24,6 +24,7 @@ a high-level strategy for coding feedfrward propagation is as follows:
 2. Compute activation.
 3. Repeat the first two steps at each neuron until the output layer.
 4. Compute the loss by comparing the prediction with the actual output.
+5. 
 ```python
 def feed_forward(inputs, outputs, weights):
   pre_hidden = np.dot(inputs,weights[0])+ weights[1]
@@ -113,7 +114,7 @@ Torch tensoro has the ability to compute gradient by specifying `requires_grad =
 
 Note that Pytorch is specifically optimized to run on GPu, which gives it an edge compare with computing the same outcome via numpy.
 
-__Building a nueral network with PyTorch__
+### Building a nueral network with PyTorch
 
 Building a neural network requires to define the following components:
 - The number of hidden layers
@@ -195,5 +196,149 @@ plt.plot(Losses)
 plt.show();
 ```
 
-- 
-- 
+### Dataset, DataLoadre, and batch size
+
+- Batch size is the number of data points considered to calculate the loss value or updateweights. This hyperparameter helps to perform optimization when the size of dataset is so large that it does not fit memory. The batch size helps ensure that we fetch multiple samples of data that are representative enough, but not necessarily 100% representative of the total data.
+- Dataset class requires to return two values: lenght of the dataset, and fetch specific row in dataset. We pass input and output into this class.
+- DataLoader gets the dataset, created by Dataset class, and batch_size. It then is used to fetch the batch_size number of datapoints.
+
+__Create a custome dataset and dataloar__
+```python
+from torch.utils.data import Dataset, DataLoader
+import torch
+import torch.nn as nn
+
+# Toy dataset
+x = torch.tensor([[1.,2.],[3.,4.],[5.,6.],[7.,8.]])
+y = torch.tensor([[3.],[7.],[11.],[15.]])
+
+# send to device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+x = x.to(device)
+y = y.to(device)
+
+# Create customdataset
+class CustomeDataset(Dataset):
+  def __init__(self,x,y):
+    self.x = torch.tensor(x, dtype = torch.float32)
+    self.y = torch.tensor(y, dtype = torch.float32)
+
+  def __len__(self):
+    # specify len of dataset
+    return len(self.x)
+  
+  def __getitem__(self,index):
+    # fetch a specific row
+    return self.x[index], self.y[index]
+
+# creat instance for custom dataset
+dataste = CustomeDataset(x,y)
+
+# Create dataloader to fetcccch the batch_size number of datapoints
+train_loader = DataLoader(dataset = dataste, batch_size = 2, shuffle = True)
+
+# get x and y from dataloader
+for (x,y) in train_loader:
+  print(f'x: {x}, y: {y}')
+```
+
+
+### All together: Custome dataset, dataloder, nn model, and make prediction
+```python
+import torch
+import torch.nn as nn
+from torch.utils.data import Dataset, DataLoader
+from torch.optim import SGD
+import time
+import matplotlib.pyplot as plt
+
+
+# ------------------------------------------------------------------------
+# ------------------ define input and output - dataset ------------------
+
+x = torch.tensor([[1.,2.],[3.,4.],[5.,6.],[7.,8.]])
+y = torch.tensor([[3.],[7.],[11.],[15.]])
+
+# send to device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+x = x.to(device)
+y = y.to(device)
+
+# ------------------ Create customdataset ------------------
+class CustomeDataset(Dataset):
+  def __init__(self,x,y):
+    self.x = torch.tensor(x, dtype = torch.float32)
+    self.y = torch.tensor(y, dtype = torch.float32)
+
+  def __len__(self):
+    # specify len of dataset
+    return len(self.x)
+  
+  def __getitem__(self,index):
+    # fetch a specific row
+    return self.x[index], self.y[index]
+
+# creat instance for custom dataset
+dataste = CustomeDataset(x,y)
+
+# Create dataloader to fetcccch the batch_size number of datapoints
+train_loader = DataLoader(dataset = dataste, batch_size = 2, shuffle = True)
+
+# ------------------------------------------------------------------------
+# ------------------ define neural network ------------------
+class nn_model(nn.Module): # 
+    def __init__(self):  
+        super().__init__()
+        self.layer1 = nn.Linear(2,8)
+        self.activation = nn.ReLU()
+        self.layer2 = nn.Linear(8,1)
+
+    def forward(self,x):
+        x = self.layer1(x)
+        x = self.activation(x)
+        x = self.layer2(x)
+        return x
+        
+# ------------------ Create model ------------------
+network_2 = nn_model()
+network_2.to(device)
+
+
+# ------------------ define loss and optimization functions ------------------
+loss_fn = nn.MSELoss()
+optimizer = SGD(network_2.parameters(), lr = 0.001)
+ 
+# ------------------ train network ------------------
+Losses = []
+epochs = 25
+
+start = time.time()
+for _ in range(epochs):
+  for data in train_loader:
+    x,y = data
+    optimizer.zero_grad()
+    loss_value = loss_fn(network_2(x),y)
+    loss_value.backward()
+    optimizer.step()
+    Losses.append(loss_value.item())
+end = time.time()
+print(f'time for training {epochs} : {end-start}')
+
+#  plot losses ------------------
+plt.plot(Losses)
+plt.show();
+
+
+# ------------------ make a prediction ------------------
+new_x = torch.tensor([[9.,10.]])
+new_x = new_x.to(device)
+print (f" Prediction for input {new_x}: {network_2(new_x)}")
+```
+
+
+
+
+
+
+
+
