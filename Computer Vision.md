@@ -41,7 +41,7 @@ $\begin{equation}\begin{cases} \Delta_{0}=0,3 \Delta_{1}+0,3\Delta_{0} \\ \Delta
 __Activation functions__
 - $tanh (x) =  \frac{e^x - e^{-x}}{e_x + e^{-x}}$
 - $ sigmoid (x)= \frac{1}{1 + e^{-x}}$
-- $$ReLU = \begin{cases} x & x > 0 \\ 0 & x \leq 0 \end{cases}$$
+- Relu $$ReLU = \begin{cases} x & x > 0 \\ 0 & x \leq 0 \end{cases}$$
 
 
 ```python
