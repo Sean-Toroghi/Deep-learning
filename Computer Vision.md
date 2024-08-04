@@ -339,6 +339,70 @@ print (f" Prediction for input {new_x}: {network_2(new_x)}")
 ### Create custome loss function
 Custome Loss function can be created by defining a function that gets the $y$ and $\hat{y}$ and returns a value representing the computed loss.
 
+```python
+def mean_squared_error_function(y_hat, y):
+    loss = (y_hat - y)**2
+    loss = loss.mean()
+    return loss
+```
+### Get the output of an intermeidate layer
+In the case of transfer and transfer learning, we need to obtain output values for an intermediate layer in a network. Pytorch provides two method to implement this:
+- method 1: call the layer as if it is a function
+- method 2: specify the layer in the `forward` method
 
+```python
+# seed
+torch.manual_seed(42)
+
+# define neural network
+class nn_model(nn.Module): # 
+    def __init__(self):  
+        super().__init__()
+        self.layer1 = nn.Linear(2,8)
+        self.activation = nn.ReLU()
+        self.layer2 = nn.Linear(8,1)
+
+    def forward(self,x):
+        x = self.layer1(x)
+        x = self.activation(x)
+        out = self.layer2(x)
+        return out
+# create input x
+x = torch.tensor([[1.,2.],[3.,4.],[5.,6.],[7.,8.]])
+x = x.to(device)
+
+# create model
+network_3 = nn_model()
+network_3.to(device)
+
+# access to the input of layer 2 (x -> layer1 -> activation -> ? ->layer2)
+
+# method 1: call layer as a function
+layer1_output = network_3.layer1(x)
+activation_output = network_3.activation(layer1_output)
+print(f"input of layer 2 - (method 1): {activation_output}")
+
+# method 2: specify in the forward method
+class nn_model_modified(nn.Module): #return input to layer 2
+  def __init__(self):  
+    super().__init__()
+    self.layer1 = nn.Linear(2,8)
+    self.activation = nn.ReLU()
+    self.layer2 = nn.Linear(8,1)
+
+  def forward(self,x):
+    x = self.layer1(x)
+    x = self.activation(x)
+    layer2_input = x
+    out = self.layer2(layer2_input)
+    return out, layer2_input
+# create the modified network, and get input to layer 2
+network_4 = nn_model_modified()
+network_4.to(device)
+_, layer2_input = network_4(x) # equivalent to network_4(x)[1]
+print(f"input of layer 2 (method 2): {layer2_input}")
+```
+
+## Sequential method to build a neural network
 
 
