@@ -115,7 +115,85 @@ Note that Pytorch is specifically optimized to run on GPu, which gives it an edg
 
 __Building a nueral network with PyTorch__
 
+Building a neural network requires to define the following components:
+- The number of hidden layers
+- The number of units in a hidden layer
+- Activation functions performed at the various layers
+- The loss function that we try to optimize for
+- The learning rate associated with the neural network
+- The batch size of data leveraged to build the neural network
+- The number of epochs of forward- and backpropagation
 
+Building a simple neural network with one hidden layer
+```python
+
+# ------------------ define tensors: input and output ------------------
+import torch
+x = torch.tensor([[1.,2.],[3.,4.],[5.,6.],[7.,8.]])
+y = torch.tensor([[3.],[7.],[11.],[15.]])
+
+# send to device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+x = x.to(device)
+y = y.to(device)
+
+# ------------------ define neural network ------------------
+import torch.nn as nn
+class nn_model(nn.Module): # 
+    def __init__(self): # ensure class inherets from nn.Module
+        super().__init__()
+        self.layer1 = nn.Linear(2,8)
+        self.activation = nn.ReLU()
+        self.layer2 = nn.Linear(8,1)
+    def forward(self,x):
+        x = self.layer1(x)
+        x = self.activation(x)
+        x = self.layer2(x)
+        return x
+        
+# ------------------ Create model ------------------
+network_1 = nn_model()
+network_1.to(device)
+
+
+# get weight and bias of each layer
+print(f"weights for layer 1: {network_1.layer1.weight} ; bias for layer 1: {network_1.layer1.bias}")
+print(f'weight shaoe for layer 1: {network_1.layer1.weight.shape}')
+# Get all parameters of a network
+print('\n\nAll parameters in the network\n\n')
+for par in network_1.parameters():
+  print(par)
+
+
+# ------------------ compute loss ------------------
+loss_fn = nn.MSELoss()
+y_hat = network_1(x)
+loss = loss_fn(y_hat,y)
+print('initial loss:', loss)
+
+# ------------------ optimize via sgd ------------------
+from torch.optim import SGD
+optimizer = SGD(network_1.parameters(), lr = 0.001)
+ 
+# ------------------ train network ------------------
+Losses = []
+for _ in range(30):
+
+  # flush previous epoch's gradient
+  optimizer.zero_grad()
+  # Compute loss
+  loss_value = loss_fn(network_1(x),y)
+  # Backpropogation
+  loss_value.backward()
+  # updates the weights
+  optimizer.step()
+  Losses.append(loss_value.item())
+
+# ------------------ plot losses ------------------
+import matplotlib.pyplot as plt
+plt.plot(Losses)
+plt.show();
+```
 
 - 
 - 
