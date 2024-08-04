@@ -92,4 +92,27 @@ Converting between numpy array and tensor: `torch.tensor(np.array())`
 
 __Some of the operations on tensors__
 - elementwise multiplication of a scalar by tensor x: `x * scakar_value`
+- elementwise addition of a scalar to values in tensor x: `x.add(scalar_value)`
+- reshaping tensor x:`x.view(new_shape)`
+- remove a single dimension of value 1, located in dim position i:`x.squeeze(i)` or `torch.squeeze(x,i)`
+- add a dimension of value 1 to position i: `x.unsqueeze(i)` or `torch.unsqueeze(x,i)`
+- Alternative to `unsqueeze` we can employ `None`. Following two codes returns the same dimension (add dim with value 1 to the second position in dim):`x.unsqueeze(1)` and `x[:,None]`
+- Matrix multiplication either by `torch.matmul(x,y)` or `x@y`
+- Concatenation: `torch.cat([x,y], axis = )`. Here axis define the dim position at which we want to perform concatenate.
+- Get max value in a tensor: `x.max()`
+- Get max value along specific dimension and its index: `max_val, max_index = x.max(dim = 0)` (here along row values)
+- Permute dimension of a tensor: `x.permute(new_dim_position)`
+- __NOTE__ for swapping dimensions, always use `permute`. Using `view` for this purpose will cause unforeseen results.
+- Other functions: abs, add, argsort, ceil, floor, sin, cos, tan, cumsum, cumprod, diag, eig, exp, log, log2, log10, mean, median, mode, resize, round, sigmoid, softmax, square, sqrt, svd, and transpose.
+- Get all methods for a toech tensor: `dir(torch.Tensor)`
+
+
+__Auto gradient parameter__
+
+Torch tensoro has the ability to compute gradient by specifying `requires_grad = True` when defining the input tensor. Then by calling `output.backward()` function, we get the gradient with respect to input x by calling `x.grad()` function.
+
+__Building a nueral network with PyTorch__
+
+
+- 
 - 
