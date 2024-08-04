@@ -35,12 +35,11 @@ def feed_forward(inputs, outputs, weights):
 ```
 
 
-$\begin{equation}\begin{cases} \Delta_{0}=0,3 \Delta_{1}+0,3\Delta_{0} \\ \Delta_{1}-5=0,2\Delta_{1}-0,2\Delta_{0} \end{cases} \end{equation}$
 
 
 __Activation functions__
-- $tanh (x) =  \frac{e^x - e^{-x}}{e_x + e^{-x}}$ return value $\in /[-1,1 \]$
-- $ sigmoid (x)= \frac{1}{1 + e^{-x}}$ returns value $\in /[0,1 \]$
+- $tanh (x) =  \frac{e^x - e^{-x}}{e_x + e^{-x}}$ return value $\in \[-1,1 \]$
+- $ sigmoid (x)= \frac{1}{1 + e^{-x}}$ returns value $\in \[0,1 \]$
 
 
 $$ReLU = \begin{cases} 
