@@ -114,7 +114,7 @@ Torch tensoro has the ability to compute gradient by specifying `requires_grad =
 
 Note that Pytorch is specifically optimized to run on GPu, which gives it an edge compare with computing the same outcome via numpy.
 
-### Building a nueral network with PyTorch
+## Building a nueral network with PyTorch
 
 Building a neural network requires to define the following components:
 - The number of hidden layers
@@ -403,6 +403,102 @@ _, layer2_input = network_4(x) # equivalent to network_4(x)[1]
 print(f"input of layer 2 (method 2): {layer2_input}")
 ```
 
-## Sequential method to build a neural network
+### Sequential method for building a neural network
+Employ sequene method simplofies building a neural network. It uses `Sequencial` class, and requires to perform the same steps as `nn.Module` to build a network. 
+
+
+### Saving/loading a model
+ To define a model, we need three components: 
+- unique name for each parameter corespond to `__init__`
+- logic to connect every tensor in the network to one another correspond to `forward`
+- a value (weight/bias) of each tensor correspond to the updated weight/bias during training
+
+Employ  `model.state_dict()` is used to save/load a model. It reqturns a dictionary, in which keys are the names of the model's layers, valuyes are the weights of the layers. Note to send model to cpu before initialize the save method. This way we save cpu tensors, and can later load them even if cuda is not available. 
+
+When loading a saved mode, we need to first build a model with the exact same architecture as the saved model, and assign the saved values to it.
+
+__Note:__ although an alternative method for saving a model is to save its architecture and parameters together via invocking `torch.save(model, '<path>')` and load it later via `torch.load(mdoel,'<path>')`, it is not advisable. In case the torch version changes, we won't be able to run it (incompatible torch version between saved and load models).
+
+__Example: building a toy model with Sequential method__
+```python
+import torch
+import torch.nn as nn
+from torch.utils.data import Dataset, DataLoader
+from torch.optim import SGD
+import time
+import matplotlib.pyplot as plt
+from torchsummary import summary
+# ------------------- Dataet ----------------------
+X = torch.tensor([[1.,2.],[3.,4.],[5.,6.],[7.,8.]])
+y = torch.tensor([[3.],[7.],[11.],[15.]])
+
+# send to device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+X = X.to(device)
+y = y.to(device)
+
+# Create custom dataset class 
+class CustomeDataset(Dataset):
+  def __init__(self,X,y):
+    self.X = torch.tensor(X, dtype = torch.float32).to(device)
+    self.y = torch.tensor(y, dtype = torch.float32).to(device)
+  def __getitem__(self,index):
+    return self.X[index], self.y[index]
+  def __len__(self):
+    return len(self.X)
+# define dataset and dataloader
+dataset = CustomeDataset(X,y)
+train_loader = DataLoader(dataset, batch_size = 2, shuffle = True)
+
+# ------------------- Model ----------------------
+network_5 = nn.Sequential(nn.Linear(2,8),
+                          nn.ReLU(),
+                          nn.Linear(8,1)
+                          ).to(device)
+
+# Get model summary: summary(model_name, input_size)
+# since the input dim for first layer is (2,8)
+# input size needs to have 2 in its second position (for matrix multiplication)
+summary(network_5, (1,2))
+
+# loss and optimization
+loss_fn = nn.MSELoss()
+optimizer = SGD(network_5.parameters(), lr = 0.001)
+
+# training
+losses = []
+epochs = 25
+for _ in range(epochs):
+  for data in train_loader:
+    x,y = data
+    optimizer.zero_grad()
+    loss_value = loss_fn(network_5(x),y)
+    loss_value.backward()
+    optimizer.step()
+    losses.append(loss_value.item())
+
+# plot losses
+plt.plot(losses)
+plt.show();
+
+# make a prediction
+new_x = torch.tensor([[8,9],[10,11],[1.5,2.5]])
+new_x = new_x.to(device)
+print (f" Prediction for input {new_x}: \n{network_5(new_x)}")
+# ------------------------------------------------------------
+# saving model
+torch.save(network_5.state_dict(), 'model.pth')
+# loading model
+network_6 = nn.Sequential(nn.Linear(2,8),
+                          nn.ReLU(),
+                          nn.Linear(8,1)
+                          ).to(device)
+network_6.load_state_dict(torch.load('model.pth'))
+```
+
+---
+
+## Building a deep neural network with PyTorch
+
 
 
