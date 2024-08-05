@@ -556,4 +556,42 @@ __Effect of hyperparameters on the model performance__
 - deeper neural network model: as model gets deeper, its complexity increases. This leads to overfitting.
 - input normalization: when the input value is large, the variation of the sigmoid output doesn’t make much difference when the weight values change considerably. As the result, and to avoid its negative effect on accuracy, we need to normalize inputs, prior to feeding them into the model. similar to large value as input, but at the other side of spectrom, when the input values are very small, the sigmoid output changes slightly, requiring a big change to the weight value to achieve optimal results.
 - batch normalization: similar to input normalization, values in hidden layers could get very large or very small, which negatively effect the model to correctly learn and predict. Batch normalization is perform by computing batch norm and standard deviation and then normalize the batch values by subtracting each vlaue from the batch mean and divide by the batch variance (hard normalization). In soft normalization, the network identfies best normalization parameters: $\alpha , \beta$.
-- dropout:
+- dropout: helps to reduce risk of overfitting. Dropout is a mechanism that randomly chooses a specified percentage of node activations and reduces them to 0. In the next iteration, another random set of hidden units is switched off. This way, the neural network does not optimize for edge cases, as the network does not get that many opportunities to adjust the weight to memorize for edge cases. NOTE: during prediction, dropout doesn’t need to be applied.
+- __regularization__: one fewature of overfitting is that some of the weights are become super large during the training. To prevent this from occuring, we can employ regularization. This technique penalize the model for having large weight values. There are two types of regularization: L1 and L2. Regularization is incorporated into a model, during the training steps, by adding the penalty term when computing the loss in forward pass.
+  - L1: regularization ensures that it penalizes for the high absolute values of weights by incorporating them in the loss value calculation.
+  ```python
+  model.train()
+  prediction = model(x)
+  l1_regularization = 0
+  for param in model.parameters():
+      l1_regularization += torch.norm(param,1)
+  batch_loss = loss_fn(prediction, y)+0.0001*l1_regularization
+  batch_loss.backward()
+  optimizer.step()
+  optimizer.zero_grad()
+  ```
+  - L2: it penalize for large weight values by having the sum of squared values of weights incorporated into the loss value calculation. Similar to L1, L2 term is added to the loss during the forward pass
+  ```python
+  model.train()
+  prediction = model(x)
+  l2_regularization = 0
+  for param in model.parameters():
+      l2_regularization += torch.norm(param,2)
+  batch_loss = loss_fn(prediction, y) + 0.01*l2_regularization
+  batch_loss.backward()
+  optimizer.step()
+  optimizer.zero_grad()
+  ```
+
+
+
+
+
+
+
+
+
+
+
+
+
