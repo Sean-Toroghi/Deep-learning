@@ -508,5 +508,29 @@ network_6.load_state_dict(torch.load('model.pth'))
 
 ## Building a deep neural network with PyTorch
 
+### Representing an image
+A digital image is reprsented by an array of pixels, each has a value between 0 to 255 for black and white image, and three dim vector of pixels, one for each channel of RBG for a color image. 
+
+Image dimension (height, width, c) corresponds to (row, column, channels). It can be converted into a structured arrays and scalars, and shown by employing `cv2` and `matplotlib` libraries. Also different preprocessing, such as cropping can be implemented once the image is loaded as an array. 
+
+```python
+import cv2, matplotlib.pyplot as plt
+iamge = cv2.imread('<path>')
+
+# apply preprocessing ---------------
+# crop
+iamge = iamge[50:250, 40:240]
+# convert to grayscale
+iamge = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# plot the image
+plt.imshow(image, cmap = 'gray)
+```
+
+__Example of a RBG image of size 3x3__
+
+![image](https://github.com/user-attachments/assets/b56857ad-3844-49eb-ab09-75f99d88579a)
+
+
 
 
