@@ -587,11 +587,14 @@ __Example__: image classification
 
 ---
 
-# Convolutional neural network and its application in object classification and detection
+# Convolutional neural network and its application in image classification, object classification and detection
 
 
-
-
+__Concepts and terms__
+- convolution: A convolution is basically a multiplication between two matrices. However, it is not exactly like how we multiply two matrices in algebra. In nutshell, convolution is elementwise multiplication, and for two different size matric, we slide the smaller matrix over the large one, and perform the elementwise multiplication. The smaller matrix is called _filter_ or _kernel_, and bigger matrix is the original image.
+- filer (or kernel): is a matrix of weights that is initialized randomly at the start. The model learns the optimal weight values of a filter over increasing epochs. As the number of filters increase, the model gain more capability to learn from an image ( the filters learn about different features present in the image). If we employ $n$ filters, the output will be a matrix with $n$ channels.
+  <img src = "https://github.com/user-attachments/assets/b32ed609-6e81-415d-a901-c05a52158407" width="150" height="150">
+ 
 
 
 
