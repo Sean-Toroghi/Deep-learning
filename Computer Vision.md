@@ -550,14 +550,14 @@ Steps that are required to build and train a model:
 - Perform weight updates based on each batch of data over increasing epochs
 
 
-__Effect of hyperparameters on the model performance__
-- batch size: larger batch size negatively effects the performance. However, the smaller batch size results in a longer training time. Each epoch requires to perform more runs. In summary, having a lower batch size generally helps in achieving optimal accuracy when we have a small number of epochs, but it should not be so low that training time is impacted.
-- optimizer function: optimizer drives weights to optimal value at which the loss will be minimal. Some of the optimizer functions are Adam, SGD, Adagrad, Adadelta, AdamW, LBFGS, and RMSprop.
-- deeper neural network model: as model gets deeper, its complexity increases. This leads to overfitting.
-- input normalization: when the input value is large, the variation of the sigmoid output doesn’t make much difference when the weight values change considerably. As the result, and to avoid its negative effect on accuracy, we need to normalize inputs, prior to feeding them into the model. similar to large value as input, but at the other side of spectrom, when the input values are very small, the sigmoid output changes slightly, requiring a big change to the weight value to achieve optimal results.
-- batch normalization: similar to input normalization, values in hidden layers could get very large or very small, which negatively effect the model to correctly learn and predict. Batch normalization is perform by computing batch norm and standard deviation and then normalize the batch values by subtracting each vlaue from the batch mean and divide by the batch variance (hard normalization). In soft normalization, the network identfies best normalization parameters: $\alpha , \beta$.
-- dropout: helps to reduce risk of overfitting. Dropout is a mechanism that randomly chooses a specified percentage of node activations and reduces them to 0. In the next iteration, another random set of hidden units is switched off. This way, the neural network does not optimize for edge cases, as the network does not get that many opportunities to adjust the weight to memorize for edge cases. NOTE: during prediction, dropout doesn’t need to be applied.
-- __regularization__: one fewature of overfitting is that some of the weights are become super large during the training. To prevent this from occuring, we can employ regularization. This technique penalize the model for having large weight values. There are two types of regularization: L1 and L2. Regularization is incorporated into a model, during the training steps, by adding the penalty term when computing the loss in forward pass.
+## Effect of hyperparameters and model design
+- __batch size__: larger batch size negatively effects the performance. However, the smaller batch size results in a longer training time. Each epoch requires to perform more runs. In summary, having a lower batch size generally helps in achieving optimal accuracy when we have a small number of epochs, but it should not be so low that training time is impacted.
+- __optimizer function__: optimizer drives weights to optimal value at which the loss will be minimal. Some of the optimizer functions are Adam, SGD, Adagrad, Adadelta, AdamW, LBFGS, and RMSprop.
+- __deeper neural network model__: as model gets deeper, its complexity increases. This leads to overfitting.
+- __input normalization__: when the input value is large, the variation of the sigmoid output doesn’t make much difference when the weight values change considerably. As the result, and to avoid its negative effect on accuracy, we need to normalize inputs, prior to feeding them into the model. similar to large value as input, but at the other side of spectrom, when the input values are very small, the sigmoid output changes slightly, requiring a big change to the weight value to achieve optimal results.
+- __batch normalization__: similar to input normalization, values in hidden layers could get very large or very small, which negatively effect the model to correctly learn and predict. Batch normalization is perform by computing batch norm and standard deviation and then normalize the batch values by subtracting each vlaue from the batch mean and divide by the batch variance (hard normalization). In soft normalization, the network identfies best normalization parameters: $\alpha , \beta$.
+- __dropout__: helps to reduce risk of overfitting. Dropout is a mechanism that randomly chooses a specified percentage of node activations and reduces them to 0. In the next iteration, another random set of hidden units is switched off. This way, the neural network does not optimize for edge cases, as the network does not get that many opportunities to adjust the weight to memorize for edge cases. NOTE: during prediction, dropout doesn’t need to be applied.
+- __regularization__: one feature of overfitting is that some of the weights are become super large during the training. To prevent this from occuring, we can employ regularization. This technique penalize the model for having large weight values. There are two types of regularization: L1 and L2. Regularization is incorporated into a model, during the training steps, by adding the penalty term when computing the loss in forward pass.
   - L1: regularization ensures that it penalizes for the high absolute values of weights by incorporating them in the loss value calculation.
   ```python
   model.train()
@@ -582,9 +582,12 @@ __Effect of hyperparameters on the model performance__
   optimizer.step()
   optimizer.zero_grad()
   ```
+__Example__: image classification
 
 
+---
 
+# Convolutional neural network and its application in object classification and detection
 
 
 
