@@ -593,8 +593,18 @@ __Example__: image classification
 __Concepts and terms__
 - convolution: A convolution is basically a multiplication between two matrices. However, it is not exactly like how we multiply two matrices in algebra. In nutshell, convolution is elementwise multiplication, and for two different size matric, we slide the smaller matrix over the large one, and perform the elementwise multiplication. The smaller matrix is called _filter_ or _kernel_, and bigger matrix is the original image.
 - filer (or kernel): is a matrix of weights that is initialized randomly at the start. The model learns the optimal weight values of a filter over increasing epochs. As the number of filters increase, the model gain more capability to learn from an image ( the filters learn about different features present in the image). If we employ $n$ filters, the output will be a matrix with $n$ channels.
-  <img src = "https://github.com/user-attachments/assets/b32ed609-6e81-415d-a901-c05a52158407" width="150" height="150">
  
+
+
+  <img src = "https://github.com/user-attachments/assets/b32ed609-6e81-415d-a901-c05a52158407" width="250" height="250">
+
+- stride, padding, ad pooling
+- flatten layer (fully connected layer) 
+
+The operations of convolution and pooling constitute the feature learning section, as filters help in extracting relevant features from images and pooling helps in aggregating information and thereby reducing the number of nodes at the flatten layer.
+<img src = "https://github.com/user-attachments/assets/594f6872-c905-400b-bc8e-fddf297aadc1" width="250" height="250">
+
+
 
 
 
