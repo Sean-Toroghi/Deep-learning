@@ -596,14 +596,17 @@ __Concepts and terms__
  
 
 
-  <img src = "https://github.com/user-attachments/assets/b32ed609-6e81-415d-a901-c05a52158407" width="250" height="250">
+  <img src = "https://github.com/user-attachments/assets/b32ed609-6e81-415d-a901-c05a52158407" width="300" height="250">
 
 - stride, padding, ad pooling
 - flatten layer (fully connected layer) 
 
 The operations of convolution and pooling constitute the feature learning section, as filters help in extracting relevant features from images and pooling helps in aggregating information and thereby reducing the number of nodes at the flatten layer.
-<img src = "https://github.com/user-attachments/assets/594f6872-c905-400b-bc8e-fddf297aadc1" width="250" height="250">
 
+
+<img src = "https://github.com/user-attachments/assets/594f6872-c905-400b-bc8e-fddf297aadc1" width="350" height="250">
+
+Convolution and pooling can also help us with the __receptive field.__ 
 
 
 
