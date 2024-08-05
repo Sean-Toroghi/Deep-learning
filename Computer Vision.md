@@ -529,7 +529,7 @@ plt.imshow(image, cmap = 'gray)
 
 __Example of a RBG image of size 3x3__
 
-![image](https://github.com/user-attachments/assets/b56857ad-3844-49eb-ab09-75f99d88579a)
+![image](https://github.com/user-attachments/assets/b56857ad-3844-49eb-ab09-75f99d88579a = 20x20)
 
 
 
