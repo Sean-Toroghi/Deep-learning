@@ -507,6 +507,14 @@ network_6.load_state_dict(torch.load('model.pth'))
 ---
 
 ## Building a deep neural network with PyTorch
+Nueral network models are very capable with regards to tasks that have image as inputs, including image classification, object detection, image segmentation, and many other emerging ones. 
+
+In traditional computer vision, a range of methods were used for feature extraction. However, the drawback to this approach is it requires an expert in image and signal analysis. Some of the feature extraction methods are:
+- histogram feature: useful for tasks such as auto-brightness, or night vision.
+- edge and corders feature: for tasks such as image segmentation.
+- color seperation feature: in tasjs such as traffic light detection, a model is required to detect different colors.
+- image gradients feature: a step further of color seperation feature that is aimed to understand how the colors change at the pixel level. It also acts as a prerequisite for edge detection.
+ 
 
 ### Representing an image
 A digital image is reprsented by an array of pixels, each has a value between 0 to 255 for black and white image, and three dim vector of pixels, one for each channel of RBG for a color image. 
@@ -531,7 +539,21 @@ __Example of a RBG image of size 3x3__
 
 <img src="https://github.com/user-attachments/assets/b56857ad-3844-49eb-ab09-75f99d88579a" width="150" height="150">
  
+## Image classification with deep learning 
+Steps that are required to build and train a model:
+- Import the relevant packages
+- Build a dataset that can fetch data one data point at a time
+- Wrap the dataloader from the dataset
+- Build a model and then define the loss function and the optimizer
+- Define two functions to train and validate a batch of data, respectively
+- Define a function that will calculate the accuracy of the data
+- Perform weight updates based on each batch of data over increasing epochs
 
 
-
-
+__Effect of hyperparameters on the model performance__
+- batch size: larger batch size negatively effects the performance. However, the smaller batch size results in a longer training time. Each epoch requires to perform more runs. In summary, having a lower batch size generally helps in achieving optimal accuracy when we have a small number of epochs, but it should not be so low that training time is impacted.
+- optimizer function: optimizer drives weights to optimal value at which the loss will be minimal. Some of the optimizer functions are Adam, SGD, Adagrad, Adadelta, AdamW, LBFGS, and RMSprop.
+- deeper neural network model: as model gets deeper, its complexity increases. This leads to overfitting.
+- input normalization: when the input value is large, the variation of the sigmoid output doesn’t make much difference when the weight values change considerably. As the result, and to avoid its negative effect on accuracy, we need to normalize inputs, prior to feeding them into the model. similar to large value as input, but at the other side of spectrom, when the input values are very small, the sigmoid output changes slightly, requiring a big change to the weight value to achieve optimal results.
+- batch normalization: similar to input normalization, values in hidden layers could get very large or very small, which negatively effect the model to correctly learn and predict. Batch normalization is perform by computing batch norm and standard deviation and then normalize the batch values by subtracting each vlaue from the batch mean and divide by the batch variance (hard normalization). In soft normalization, the network identfies best normalization parameters: $\alpha , \beta$.
+- dropout:
