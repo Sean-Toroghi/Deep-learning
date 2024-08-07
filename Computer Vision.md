@@ -610,6 +610,24 @@ Convolution and pooling can also help us with the __receptive field.__
 
 
 
+# Object detection
+
+
+## Intro: object detection task
+Object detection, in gneeral term refers to the task of detecting an object for tasks such as classification, or draw a boundary around an object in an image.  Some applications for obejct detection task are: 
+- security
+- 
+
+An example i s performing image classification when there is a cat and dog in the image. The model not only needs to identify the location of the two object, but also predict the classes assicuated with the two object. 
+
+
+## Creating a bounding-box ground truth for training
+## Understanding region proposals
+## Understanding IoU, non-max suppression, and mean average precision
+## Training R-CNN-based and Fast R-CNN-based custom object detectors
+ 
+
+
 
 
 
