@@ -693,7 +693,7 @@ def compute_IoU(boxA, boxB , epsilon=1e-5):
   return iou
 ```
 
-
+__Non-max suppresion__
 
 
 
