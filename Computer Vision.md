@@ -614,11 +614,90 @@ Convolution and pooling can also help us with the __receptive field.__
 
 
 ## Intro: object detection task
-Object detection, in gneeral term refers to the task of detecting an object for tasks such as classification, or draw a boundary around an object in an image.  Some applications for obejct detection task are: 
-- security
-- 
+Object detection, in gneeral term refers to the task of detecting an object for tasks such as classification, or draw a boundary around an object in an image. Two methods for identifying reigon surrounding an object are `SelectiveSearc` and anchor boxes. Some applications for obejct detection task are: 
+- security: idenitfy personels in survailance camera vs intruders.
+- Autonomous vehcles: recognizing the various objects present in the image of the surrounding.
+- Image searching: identify the images containing an object (or a person) of interest.
+- Automotives: identifying a number plate within the image of a car or an id card number.
 
 An example i s performing image classification when there is a cat and dog in the image. The model not only needs to identify the location of the two object, but also predict the classes assicuated with the two object. 
+
+A high level steps for object detection is as follow:
+1. Creating ground-truth data that contains labels of the bounding box and class corresponding to various objects present in the image
+2. Coming up with mechanisms that scan through the image to identify regions (region proposals) that are likely to contain objects
+3. Creating the target class variable by using the IoU metric
+4. Creating the target bounding-box offset variable to make corrections to the location of the region proposal in step 2
+5. Building a model that can predict the class of object along with the target bounding-box offset corresponding to the region proposal
+6. Measuring the accuracy of object detection using mean average precision (mAP)
+
+
+### Creating a bounding-box ground truth for training
+Create input-output pairs, where the input is the image and the output is the bounding boxes and the object classes, is the first step in object detection pipeline. The bounding box is in practice performed by identifying four piixels that identify the four corners of the box. One approach is to employ [ybat](https://github.com/drainingsun/ybat) to create (annotate) and store bounding boxes around objects in the image in XML format. 
+
+### identify region proposals
+Region proposal is a technique that helps identify islands of regions where the pixels are similar to one another. This technique helps to identify location of objects presented in an image. Additionally, given that a region proposal generates a proposal for a region, it aids in object localization where the task is to identify a bounding box that fits exactly around an object.
+
+__SelectiveSearch__
+
+SelectiveSearch is a region proposal algorithm used for object localization, where it generates proposals of regions that are likely to be grouped together based on their pixel intensities. SelectiveSearch groups pixels based on the hierarchical grouping of similar pixels, which, in turn, leverages the color, texture, size, and shape compatibility of content within an image. The output is a segmented image with proposal regions. 
+
+```python
+import selectivesearch
+img = cv2.imread(img_path)
+img_fz = felzenszwalb(img, scale=200) # scale represents the number of clusters that can be formed within the segments of the image
+
+# define a function to extract proposal regions
+def extract_candidates(img):
+  img_lbl, regions = selectivesearch.selective_search(img, scale=200,  min_size=100)
+  img_area = np.prod(img.shape[:2])
+  candidates = []
+  for r in regions:
+      if r['rect'] in candidates: continue
+      if r['size'] < (0.05*img_area): continue
+      if r['size'] > (1*img_area): continue
+      x, y, w, h = r['rect']
+      candidates.append(list(r['rect']))
+    return candidates
+#example
+candidates = extract_candidates(img)
+```
+
+Next step is to compute the intersection of a region proposal candidate with a ground-truth bounding box.
+
+### Intersection over union (IoU)
+Intersection refers to measuring how much the predicted and actual bounding boxes overlap, while union refers to measuring the overall space possible for overlap. IoU is the ratio of the overlapping region between the two bounding boxes over the combined region of both bounding boxes.
+
+```python
+# function for computing IoU for two nput boxes
+def compute_IoU(boxA, boxB , epsilon=1e-5):
+  # compute coordinates
+  x1 = max(boxA[0], boxB[0])
+  y1 = max(boxA[1], boxB[1])
+  x2 = min(boxA[2], boxB[2])
+  y2 = min(boxA[3], boxB[3])
+
+  # compute width and height
+  width = (x2 - x1)
+  height = (y2 - y1)
+  # compute overlap area
+  if (width<0) or (height <0):
+    return 0.0
+  area_overlap = width * height
+
+  # compute combined area
+  area_a = (boxA[2] - boxA[0]) * (boxA[3] - boxA[1])
+  area_b = (boxB[2] - boxB[0]) * (boxB[3] - boxB[1])
+  area_combined = area_a + area_b - area_overlap
+
+  iou = area_overlap / (area_combined+epsilon)
+  return iou
+```
+
+
+
+
+
+
 
 
 ## Creating a bounding-box ground truth for training
