@@ -614,7 +614,13 @@ Convolution and pooling can also help us with the __receptive field.__
 
 
 ## Intro: object detection task
-Object detection, in general terms, refers to the task of detecting an object for tasks such as classification, or drawing a boundary around an object in an image. Two methods for identifying regions surrounding an object are `SelectiveSearc` and anchor boxes. Some applications for object detection task are: 
+Object detection, in general terms, refers to the task of detecting an object for tasks such as classification, or drawing a boundary around an object in an image. Object detection task could be divided into two forms:
+- object localization: draw a tight bounding box around an object
+- object detection: the general form of object detection that creates bounding boxes around objects in an image and identify each object (predict its class).
+
+Two methods for identifying regions surrounding an object are `SelectiveSearc` and anchor boxes. 
+
+Some applications for object detection task are: 
 - security: identify personnel in surveillance cameras vs intruders.
 - Autonomous vehicles: recognizing the various objects present in the image of the surrounding.
 - Image searching: identify the images containing an object (or a person) of interest.
