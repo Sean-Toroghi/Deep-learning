@@ -699,19 +699,53 @@ def compute_IoU(boxA, boxB , epsilon=1e-5):
   return iou
 ```
 
-__Non-max suppresion__
+### Non-max suppression
+To identify and pick the region among many region proposals, we can employ non-max suppression. Non-max refers to the boxes that don’t have the highest probability of containing an object, and suppression refers to us discarding those boxes. In non-max suppression, we identify the bounding box that has the highest probability of containing the object and discard all the other bounding boxes that have an IoU below a certain threshold with the box showing the highest probability of containing an object. In PyTorch, non-max suppression is performed using the `nms` function in the `torchvision.ops` module.
  
 
+### Mean average precision
+mAP is the average of precision values calculated at various IoU threshold values across all the classes of objects present within a dataset.
 
 
-
-
-
-## Creating a bounding-box ground truth for training
-## Understanding region proposals
-## Understanding IoU, non-max suppression, and mean average precision
 ## Training R-CNN-based and Fast R-CNN-based custom object detectors
- 
+
+R-CNN stands for region-based convolutional neural network. Region-based within R-CNN refers to the region proposals used to identify objects within an image.
+
+### R-CNN workflow
+To detect an object R-CNN performs the following steps:
+1. Extract region proposals from an image. We need to ensure that we extract a high number of proposals to not miss out on any potential object within the image.
+2. Resize (warp) all the extracted regions to get regions of the same size.
+3. Pass the resized region proposals through a network. Typically, we pass the resized region proposals through a pretrained model, such as VGG16 or ResNet50, and extract the features in a fully connected layer.
+4. Create data for model training, where the input is features extracted by passing the region proposals through a pretrained model. The outputs are the class corresponding to each region proposal and the offset of the region proposal from the ground truth corresponding to the image.
+
+  <img src = "https://github.com/user-attachments/assets/d9ce00a3-c0fd-4308-a146-49990a5fdd6b" width="550" height="150"> [Ref.](https://arxiv.org/pdf/1311.2524.pdf)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
