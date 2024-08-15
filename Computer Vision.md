@@ -717,8 +717,13 @@ To detect an object R-CNN performs the following steps:
 2. Resize (warp) all the extracted regions to get regions of the same size.
 3. Pass the resized region proposals through a network. Typically, we pass the resized region proposals through a pretrained model, such as VGG16 or ResNet50, and extract the features in a fully connected layer.
 4. Create data for model training, where the input is features extracted by passing the region proposals through a pretrained model. The outputs are the class corresponding to each region proposal and the offset of the region proposal from the ground truth corresponding to the image.
+5. Connect two output heads, one corresponding to the class of image and the other corresponding to the offset of region proposal with the ground-truth bounding box, to extract the fine bounding box on the object.
+6. Train the model after writing a custom loss function that minimizes both the object classification error and the bounding-box offset error.
 
   <img src = "https://github.com/user-attachments/assets/d9ce00a3-c0fd-4308-a146-49990a5fdd6b" width="550" height="150"> [Ref.](https://arxiv.org/pdf/1311.2524.pdf)
+
+
+### Implementing R-CNN for object detection
 
 
 
