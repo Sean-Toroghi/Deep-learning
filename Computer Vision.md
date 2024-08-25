@@ -31,7 +31,7 @@ a high-level strategy for coding feedforward propagation is as follows:
 2. Compute activation.
 3. Repeat the first two steps at each neuron until the output layer.
 4. Compute the loss by comparing the prediction with the actual output.
-5. 
+
 ```python
 def feed_forward(inputs, outputs, weights):
   pre_hidden = np.dot(inputs,weights[0])+ weights[1]
@@ -99,7 +99,7 @@ Building block in PyTorch is the tensor, which comes in different dimensions, fr
 Converting between numpy array and tensor: `torch.tensor(np.array())`
 
 __Some of the operations on tensors__
-- elementwise multiplication of a scalar by tensor x: `x * scakar_value`
+- elementwise multiplication of a scalar by tensor x: `x * scalar_value`
 - element wise addition of a scalar to values in tensor x: `x.add(scalar_value)`
 - reshaping tensor x:`x.view(new_shape)`
 - remove a single dimension of value 1, located in dim position i:`x.squeeze(i)` or `torch.squeeze(x,i)`
