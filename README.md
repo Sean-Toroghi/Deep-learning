@@ -3,8 +3,4 @@ deep learning models, utils, and other resources
 
 
 __Table of contents__
-- Self-supervised learning
-  - BYOL
-  - BYOL-A
-  - data2vec
-  - Audio-SSL
+- Computer vision [Link](https://github.com/Sean-Toroghi/Deep-learning/tree/main/ComputerVision)
