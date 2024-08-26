@@ -609,7 +609,84 @@ The operations of convolution and pooling constitute the feature learning sectio
 Convolution and pooling can also help us with the __receptive field.__ 
 
 
+---
+# Transfer learning for image classification task
 
+__Transfer learning__, in general, is a technique aims to improve model performance by transfering learning of the model on a generic dataset to the specific task in hand. This technique leverages the gained knwolesge to solve another smiliar task.
+
+__Transfer learning - high level__
+1. Normalize the input images, normalized by the same mean and standard deviation that was used during the training of the pretrained model.
+2. Fetch the pretrained model’s architecture. Fetch the weights for this architecture that arose as a result of being trained on a large dataset.
+3. Discard the last few layers of the pretrained model. They are replaced by new layers for fine-tune task.
+4. Connect the truncated pretrained model to a freshly initialized layer (or layers) where weights are randomly initialized. The output of the last layer needs to have as many neurons as the classes/outputs of the task in hand.
+5. Freeze the pretrained model layes (prevent them from updating their weights) and train/update weights of the newly initialized layer and the weights connecting it to the output layer are trainable.
+6. Update the trainable parameters over increasing epochs to fit a model.
+
+
+
+ Two models that are trained on ImageNet dataset (consists of 14M images and 1k classes) are VGG and ResNet. 
+
+ ## VGG16
+
+Visual geometry group was developed by the University of Oxford with 16 layers. It was trained on ImageNet and was the runner-up model in 2014. To get the pretrained VGG16, we can simply upload it from `torchvision.models` library: `models.vgg16(pretrained=True)`. It has about 138M parameters, with 13 conv/pool layers and 3 linear layers. VGG has other variations (VGG11 and VGG19). However, increasing the number of layers without having skip/residual connection does not improve model performance.
+
+<img src = "https://github.com/user-attachments/assets/1099b2d4-aee1-4138-bb96-6a9140fa1aea" width="350" height="250"> [Ref,](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_05_01.png)
+
+
+## Fine-tune
+Ther are three major sub-modules in the model:
+1. features
+2. avgpool
+3. classifier
+
+To fine-tune the model, typically the first two sub-modules are freezed and we delete the last layer (classifier) and replace it with a new layers according to the task in hand (number of classes). 
+
+### Transfer-learning VGG16
+1. normalize the dataset: it is mandatory to resize, permute, and then normalize images. The input images require to be scaled to a value between 0 and 1, having mean of [0.485, 0.456, 0.406] and sd of [0.229, 0.224, 0.225]. Define dataloader for trian and test sets.
+2. Getting model arch and weights
+3. Decide which layers to keep (freeze) and which one/s to discard (`avgpool` and `classifier`)
+4. Define new layers to be replaced by the discard ones.
+5. Define loss function and optimizer, and initialize the model
+6. Define training and accuracy functions
+7. Perform fine-tuning and trace the model performance
+
+## ResNet
+
+For deeper models, to address the problem of vanishing gradient (during backpropogation) and vanishing information about the input in the last layers during the forward pass, ResNet architecture was introduced. It employs a skip connection in its residual block that passes information directly to the output.
+
+<img src = "https://github.com/user-attachments/assets/7f783df5-c8b6-448e-b651-6636f3811d56" width="250" height="250"> [Ref,](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_05_05.png)
+
+
+<img src = "https://github.com/user-attachments/assets/04194da5-1b65-447b-95c0-5ec58f9322b9" width="350" height="250"> [Ref,](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_05_06.png)
+
+
+### Implementing ResNet
+
+To define the residual block, we need to add padding to gurantee having same dimension when performing the adding function. 
+
+
+ResNet18 has the following components, and to preform fine-tuning we can freeze all layers except the last two layers:
+
+- Convolution
+- Batch normalization
+- ReLU
+- MaxPooling
+- Four layers of ResNet blocks
+- Average pooling (avgpool)
+- A fully connected layer (fc)
+
+
+
+
+
+
+
+
+
+
+
+
+---
 # Object detection
 
 
