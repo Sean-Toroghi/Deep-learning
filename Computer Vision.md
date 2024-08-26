@@ -630,7 +630,7 @@ __Transfer learning - high level__
 
 Visual geometry group was developed by the University of Oxford with 16 layers. It was trained on ImageNet and was the runner-up model in 2014. To get the pretrained VGG16, we can simply upload it from `torchvision.models` library: `models.vgg16(pretrained=True)`. It has about 138M parameters, with 13 conv/pool layers and 3 linear layers. VGG has other variations (VGG11 and VGG19). However, increasing the number of layers without having skip/residual connection does not improve model performance.
 
-<img src = "https://github.com/user-attachments/assets/1099b2d4-aee1-4138-bb96-6a9140fa1aea" width="350" height="250"> [Ref,](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_05_01.png)
+<img src = "https://github.com/user-attachments/assets/1099b2d4-aee1-4138-bb96-6a9140fa1aea" width="850" height="250"> [Ref,](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_05_01.png)
 
 
 ## Fine-tune
@@ -657,7 +657,7 @@ For deeper models, to address the problem of vanishing gradient (during backprop
 <img src = "https://github.com/user-attachments/assets/7f783df5-c8b6-448e-b651-6636f3811d56" width="250" height="250"> [Ref,](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_05_05.png)
 
 
-<img src = "https://github.com/user-attachments/assets/04194da5-1b65-447b-95c0-5ec58f9322b9" width="350" height="250"> [Ref,](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_05_06.png)
+<img src = "https://github.com/user-attachments/assets/04194da5-1b65-447b-95c0-5ec58f9322b9" width="850" height="250"> [Ref,](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_05_06.png)
 
 
 ### Implementing ResNet
