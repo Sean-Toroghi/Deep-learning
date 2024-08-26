@@ -804,8 +804,19 @@ To detect an object R-CNN performs the following steps:
 
 
 
+--- 
+# Advance object detection techniques: single model to detect an object
+
+Unlike R-CNN and Fast-R-CNN, in which two disjoint networks are used to detect an object (one network identifies the regions that likely to have an object, and the second network make correction to the bounding box), model architecture such as YOLO employ single network for all tasks. This gives the model capability to detect all objects in one forward pass, hence run much faster. This new architecture has three main components: 1. anchor boxes, 2. region proposal network, and 3. region of interest pooling.
+
+__Anchor boxes__
+
+Anchor boxes replace selective-search approach for providing region proposals. To obtain height and weight of anchor box, we rely on two assumptions: 1. similar object ahve relatively same height to width ratio and also are similar in shape. By method such as k-mean clustering on top of the ground-truth bounding boxes of objects in images, we can obtain anchor boxes' h and w. 
+
+In the next step, we can slide each anchor box over an image, and the one with high IoU with the object that the anchor box belongs to, will have label associated with the anchor box, and the rest of the boxes will get label 0. The following image, illustrates this concept, by running two anchor boxes over the image.
 
 
+<img src = "https://github.com/user-attachments/assets/1eb7a685-9ea9-4787-bf91-5d9d054963b5" width="550" height="150"> [Ref.](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_08_01.png)
 
 
 
