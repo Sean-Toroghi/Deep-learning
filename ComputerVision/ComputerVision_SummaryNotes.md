@@ -847,8 +847,7 @@ The final step in object detection pipeline is region of interenst (ROI) pooling
 The output of the network shoud contain: total # of classes + 1 (for backgorund) + 2 (for h and w of box) + 2 (for x,y of the box)
 
 The following diagram illsutrates the workflow of Faster-CNN model:
-![B18457_08_04](https://github.com/user-attachments/assets/a7580923-9378-4bd9-9c30-620ab9d528c7)
-
+ 
 
 <img src = "https://github.com/user-attachments/assets/a7580923-9378-4bd9-9c30-620ab9d528c7" width="550" height="150"> [Ref.](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_08_04.png)
 
