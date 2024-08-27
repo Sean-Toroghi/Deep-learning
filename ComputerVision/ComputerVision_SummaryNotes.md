@@ -813,23 +813,44 @@ __Anchor boxes__
 
 Anchor boxes replace selective-search approach for providing region proposals. To obtain height and weight of anchor box, we rely on two assumptions: 1. similar object ahve relatively same height to width ratio and also are similar in shape. By method such as k-mean clustering on top of the ground-truth bounding boxes of objects in images, we can obtain anchor boxes' h and w. 
 
-In the next step, we can slide each anchor box over an image, and the one with high IoU with the object that the anchor box belongs to, will have label associated with the anchor box, and the rest of the boxes will get label 0. The following image, illustrates this concept, by running two anchor boxes over the image.
+In the next step, we can slide each anchor box over an image, and the one with high IoU with the object that the anchor box belongs to, will have label associated with the anchor box, and the rest of the boxes will get label 0. The following image, illustrates this concept, by running two anchor boxes over the image. The anchor boxes for each category can have varing scale to accomodate possible change in image scale. 
 
 
 <img src = "https://github.com/user-attachments/assets/1eb7a685-9ea9-4787-bf91-5d9d054963b5" width="550" height="150"> [Ref.](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_08_01.png)
 
 
 
+__Region proposal network__
+
+Region proposal network (RPN) is a netwrk that gets all the crops created by sliding the anchor boxes over image, and produces the likelihood that a crop contains an object. Compare to selectivesearch, which returns a region candidate based on a set of computations on top of pixel values, an RPN generates region candidates based on the anchor boxes and the strides with which anchor boxes are slid over the image. Also, selectivesearch is a separate algorithm from the object detection network, while the RPN is a part of it. 
+
+We need to define a treshold for the IoU between a region candidate and a groundtruth bounding box. If the IoU be greater than the threshold, the region contains an object.
+
+In the next step, for those candidate regions that contain an object, we can run a non-max suppression, to find those overlapping region that all contain the same object. 
+
+The summary of the RPN steps are as follow:
+1. Slide anchor boxes of different aspect ratios and sizes across the image to fetch crops of an image.
+2. Calculate the IoU between the ground-truth bounding boxes of objects in the image and the crops obtained in the previous step.
+3. Prepare the training dataset in such a way that crops with an IoU greater than a threshold contain an object and crops with an IoU less than a threshold do not contain an object.
+4. Train the model to identify regions that contain an object.
+5. Perform non-max suppression to identify the region candidate that has the highest probability of containing an object and eliminate other region candidates that have a high overlap with it.  
 
 
+__Region of interest pooling and classification/regression__
+
+The next step is to pass the region candidates through an RoI pooling layer to get regions of the shape.
+
+The final step in object detection pipeline is region of interenst (ROI) pooling, and taking its output for identifying which class the object insidet he ROI belongs to. The output of ROI pooling will be flatten and conected to a dense layer before predicting two different aspects:
+1. the class that the object in the region belongs to
+2. the amount of offset to be done on the predicted bounding boxes in order to maximize the IoU with ground-truth
+
+The output of the network shoud contain: total # of classes + 1 (for backgorund) + 2 (for h and w of box) + 2 (for x,y of the box)
+
+The following diagram illsutrates the workflow of Faster-CNN model:
+![B18457_08_04](https://github.com/user-attachments/assets/a7580923-9378-4bd9-9c30-620ab9d528c7)
 
 
-
-
-
-
-
-
+<img src = "https://github.com/user-attachments/assets/a7580923-9378-4bd9-9c30-620ab9d528c7" width="550" height="150"> [Ref.](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781803231334/files/Images/B18457_08_04.png)
 
 
 
