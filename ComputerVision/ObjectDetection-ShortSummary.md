@@ -21,7 +21,7 @@ The Boosted Cascade algorithm was built initialy to detect faces, but can be use
 2. boosting algorithm to select the features
 3. a cascade classifier
 
-### Part 1: integral images
+__Part 1: integral images__
 
 The integral images section gets input images and convert them to integral images, which takes the sum of pixels above and to the left of the point at which pixel values are computed. 
 
@@ -33,6 +33,13 @@ Example of computing integral images, given image in figure 1:
 
 <img src ="https://github.com/user-attachments/assets/64f20210-1eff-4977-b740-4b842a876ea3" width="150" height="150">
 
+__Part 2: boosting algorithm to detect features__
 
+The extracted features from step 1  are plotted against the positive and negative samples and best features are selected.
 
+__Part 3: classifier__
+
+A trained classfier for the positive and negative set of images is form froom the weaker classifier. The _attentional cascade_ in the algorithm helps to reduce computational cost and also improves efficiency of the detector.   The image is divided into multiple sub-windows and for each one, a sequential weak classifier is used to detect a feature. At any step, if a weak classifier fails to detect a feature, the algorithm halts and moves to the next sub-window. The detection succeeds if all classifiers can vote on the presence of the target object and get the bounding box. 
+
+__[Implementiion of Boosted Cascade and examples](https://github.com/opencv/opencv/tree/master/data/haarcascades)__
 
