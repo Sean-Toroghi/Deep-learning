@@ -23,7 +23,7 @@ Example of computing integral images, given image in figure 1:
 - position 3: pixel sum of two rectangle: A + C
 - position 4: (pixel sum of position 1 and 4) - (pixel sum of position 2 and 3)
 
-  ![image](https://github.com/user-attachments/assets/64f20210-1eff-4977-b740-4b842a876ea3)
+<img src ="https://github.com/user-attachments/assets/64f20210-1eff-4977-b740-4b842a876ea3" width="150" height="150">
 
 
 
