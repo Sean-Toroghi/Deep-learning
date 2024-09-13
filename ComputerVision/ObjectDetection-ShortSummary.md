@@ -110,6 +110,13 @@ Changes in v3:
 
 
 
+## prepare and process YOLO
+
+__Dataset preparation__
+
+In addition to images, YOLO requires annotation in a specific format. Futhermore, it is required to load weights of pretrained model from [link](https://pjreddie.com/darknet/yolo/). There various versions of YOLO, and each has its own weights. Furthermore, the configuration files requires to be changed accordingly. This includes training and testing configurations, batch size, width, height, channels, momentum, decay, learning rate, and burn-in parameters. The classes parameter needsto be changed to match the task in hand. 
+
+All the instances of classes and filters need to be changed in the configuration file. We need to change [filters=255] to filters=(number of classes + 5)x3 in the instances that come before the YOLO layer.
 
 
 
