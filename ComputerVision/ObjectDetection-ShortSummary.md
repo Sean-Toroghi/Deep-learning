@@ -45,4 +45,28 @@ __[Implemention of Boosted Cascade and examples](https://github.com/opencv/openc
 
 # R-CNN, Fast-RCNN, and Faster-RCNN
 
+__R-CNN__
+
+R-CNN algorithm propose an approach for object detection task, in which the algorithm first uses an efficient segmentation algorithm to generate multiple regions. Then similarity scores are calculated acroos all the neighboring elements for all regions. The most similar regions, using a greedy algorithm, are grouped together. The images with region proposals are then processed by convolutional nn for classifying objects (R-CNN uses AlexNet for this task). The extracted features are then evaluated by SVM for classification. Afterall regions are scored, a non-max supression runs on the classified regions and eliminates those regions with IOU less than a threshold value.
+
+The downside of R-CNN is its computational cost. 
+
+__Fast-RCNN__
+
+Fast-RCNN solves the issue of R-CNN's computational cost, by introducing pooling operation that reduce the image to a smaller size based on region of interest (ROI). The downside of Fast-RCC is that the process, although is expensive, does not learn any changes in the data. Futhermore, the selective search part of the algorithm is a slow and time-consuming process.
+
+__Faster-RCNN__
+
+Faster-RCNN algorithm is an extention of Fast-RCNN that predict the region proposals w/o a selective search method. With a region proposal network, the model identifies the bounding boces in the images and send the same block out to the convolutional neural network to map features. The loss functions are trained on the feature maps. The steps are as following:
+- the input image is passed onto a convolutional block to generate the convolutional feature maps.
+- A sliding window is used on the feature map for each location, by the region proposal network.
+- For each location, nine anchor boxes are used with three different scales and three aspect ratios (1:1, 1:2, 2:1), which helps generate the region proposals.
+- The classification layer tells the output whether there is an object present in the anchor boxes.
+- The regression layer indicates the coordinates for the anchor boxes.
+- The anchor boxes are passed to the region of interest’s pooling layer of the Fast R-CNN architectures.
+
+<img src ="https://github.com/user-attachments/assets/d92e11a8-6bbf-42e2-a835-2b3b4c9370af" width="150" height="150"> [Ref.](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781484282731/files/images/520381_1_En_3_Chapter/520381_1_En_3_Fig7_HTML.jpg)
+
+
+
 # YOLO
