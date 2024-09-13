@@ -87,3 +87,46 @@ An extention to Faster-RCNN is mask-RCNN, which predicts masks on the detected o
 
 
 # YOLO
+
+YOLO algorithm evolutionalize object detection task by using the same convolutional neural network to perform both predicting bounding boxes and classification, resulting in huge reduction in computational cost. The original YOLO architecture has an input layer dim of 448x448x3, 24 conv layers and max pooligs, and two fully connected layers. While the training process is very expensive, using a pretrained model is a go to approach, in most cases. The final layer predicts the classification scores and the bounding box coordinates. The width and height of the bounding boxes are normalized.
+
+## YOLO v2/v3
+Version2  and 3 of  YOLO improves the layers' efficiency. 
+
+Changes in the second version:
+- The convolutional layers ran deep, so there was always a chance of a vanishing gradient or exploding gradient. Batch normalization was added to help with the internal covariate shift in the learning.
+- It predicts class and objectness for every anchor box.
+- The network also predicts five bounding boxes and five coordinates for each bounding box.
+- A major architectural change happened when it removed the fully connected layers and replace them with anchor boxes to predict bounding boxes.
+- These anchor boxes are determined with the help of clustering on the bounding boxes of ground truth.
+
+Changes in v3:
+- using individual logistic regression or multi-label classification on the inputs.
+- removes the pooling layer and instead uses 3x3 with a stride of 2 to reduce dimensionality.
+- changes to the loss function, with three major predictions coming out—coordinates of the bounding boxes, the objectness value, and the class scores
+- backbone (most popular): Darnet-53
+- uses the residual implementation with 3x3 and 1x1 convolutional layers to get the features for detection and classification
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
