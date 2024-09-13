@@ -65,7 +65,7 @@ Faster-RCNN algorithm is an extention of Fast-RCNN that predict the region propo
 - The regression layer indicates the coordinates for the anchor boxes.
 - The anchor boxes are passed to the region of interest’s pooling layer of the Fast R-CNN architectures.
 
-<img src ="https://github.com/user-attachments/assets/d92e11a8-6bbf-42e2-a835-2b3b4c9370af" width="150" height="150"> [Ref.](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781484282731/files/images/520381_1_En_3_Chapter/520381_1_En_3_Fig7_HTML.jpg)
+<img src ="https://github.com/user-attachments/assets/d92e11a8-6bbf-42e2-a835-2b3b4c9370af" width="300" height="350"> [Ref.](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781484282731/files/images/520381_1_En_3_Chapter/520381_1_En_3_Fig7_HTML.jpg)
 
 
 
