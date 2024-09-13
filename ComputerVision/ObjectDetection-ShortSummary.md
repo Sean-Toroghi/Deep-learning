@@ -41,5 +41,8 @@ __Part 3: classifier__
 
 A trained classfier for the positive and negative set of images is form froom the weaker classifier. The _attentional cascade_ in the algorithm helps to reduce computational cost and also improves efficiency of the detector.   The image is divided into multiple sub-windows and for each one, a sequential weak classifier is used to detect a feature. At any step, if a weak classifier fails to detect a feature, the algorithm halts and moves to the next sub-window. The detection succeeds if all classifiers can vote on the presence of the target object and get the bounding box. 
 
-__[Implementiion of Boosted Cascade and examples](https://github.com/opencv/opencv/tree/master/data/haarcascades)__
+__[Implemention of Boosted Cascade and examples](https://github.com/opencv/opencv/tree/master/data/haarcascades)__
 
+# R-CNN, Fast-RCNN, and Faster-RCNN
+
+# YOLO
