@@ -45,17 +45,17 @@ __[Implemention of Boosted Cascade and examples](https://github.com/opencv/openc
 
 # R-CNN, Fast-RCNN, and Faster-RCNN
 
-__R-CNN__
+## R-CNN
 
 R-CNN algorithm propose an approach for object detection task, in which the algorithm first uses an efficient segmentation algorithm to generate multiple regions. Then similarity scores are calculated acroos all the neighboring elements for all regions. The most similar regions, using a greedy algorithm, are grouped together. The images with region proposals are then processed by convolutional nn for classifying objects (R-CNN uses AlexNet for this task). The extracted features are then evaluated by SVM for classification. Afterall regions are scored, a non-max supression runs on the classified regions and eliminates those regions with IOU less than a threshold value.
 
 The downside of R-CNN is its computational cost. 
 
-__Fast-RCNN__
+## Fast-RCNN
 
 Fast-RCNN solves the issue of R-CNN's computational cost, by introducing pooling operation that reduce the image to a smaller size based on region of interest (ROI). The downside of Fast-RCC is that the process, although is expensive, does not learn any changes in the data. Futhermore, the selective search part of the algorithm is a slow and time-consuming process.
 
-__Faster-RCNN__
+## Faster-RCNN
 
 Faster-RCNN algorithm is an extention of Fast-RCNN that predict the region proposals w/o a selective search method. With a region proposal network, the model identifies the bounding boces in the images and send the same block out to the convolutional neural network to map features. The loss functions are trained on the feature maps. The steps are as following:
 - the input image is passed onto a convolutional block to generate the convolutional feature maps.
@@ -65,7 +65,24 @@ Faster-RCNN algorithm is an extention of Fast-RCNN that predict the region propo
 - The regression layer indicates the coordinates for the anchor boxes.
 - The anchor boxes are passed to the region of interest’s pooling layer of the Fast R-CNN architectures.
 
+As shown in the following figure, the model consists of three networks: 
+1. head: generates feature maps (ResNet architecutre or similar ones)
+2. Region proposal network: generates the region of interest for the classification (opr regression) task
+3. Classigication (regression) network: perform the classification task
+
 <img src ="https://github.com/user-attachments/assets/d92e11a8-6bbf-42e2-a835-2b3b4c9370af" width="300" height="350"> [Ref.](https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781484282731/files/images/520381_1_En_3_Chapter/520381_1_En_3_Fig7_HTML.jpg)
+
+__Faster R-CNN layers can be divided into four main parts: Anchor generation layers -> region proposal layers -> ROI pooling layers -> classification layers__
+
+- Anchor generation layers: produces a series of content-agnostic bounding boxes with different sizes and aspect ratios to cover most of the image regions. A differnt approach is to define a refference boudning box and try to predict and correct the offset values to make a better fit.
+- Region proposal layers: changes the position, width, and height of the anchor poxes to fit the object better. It consists of four sections: regional proposal network, proposal layer, anchor target layer, and proposal target layer. 
+- ROI pooling layers: gets the images to fixed dimensions for the last layers.
+- classification (regression) layers: performs classification (regression).
+
+
+## Mask-RCNN
+
+An extention to Faster-RCNN is mask-RCNN, which predicts masks on the detected objects. It has two morel ayers after the ROI pooling layer for adding masks. Using ROI align, it  aligns the extracted features with the inputs. It also uses bilinear interpolation to get the exact or near-perfect values of the input regions.
 
 
 
