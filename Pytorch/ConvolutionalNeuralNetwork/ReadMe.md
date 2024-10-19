@@ -38,13 +38,14 @@ CNN model architectures ahve evolve over the past thrity years. The initila arch
 - 2019: EfficientNet
 
 ## LeNet
-LeNet is one of the earliest CNN models, consists of 5 layers and 60k parameters. It has two block of CNN and avg pooling after each block. The there are two fully connected blocks that generate an output array is size 10 (number of target classes).
+LeNet is one of the earliest CNN models, consists of 5 layers and 60k parameters. It has two block of CNN and avg pooling after each block. The there are two fully connected blocks, and one output layer that generate an output array is size 10 (number of target classes).
 
- __Code:__ implementation of LeNet in Pytorch []()
+ __Code: implementation and train LeNet on NIST dataset (10 labels)__ []()
 
  ## AlexNet
- AlexNet is the successor of LeNet, 
+ AlexNet is the successor of LeNet, which has 8 layers (5 conv layers and 3 FC layers) and 60M parameters. First two Cnv layers are each followed by Max pooling (instead of Avg pooling in LeNet). Then 3 conv layers are stacked and the output goes through another max-pooling layer, and going then through 3 FC layers it generates the final output of an array of size 1k. AlexNet is pre-trained on ImageNet with 1k labels. To use AlexNet, we can load the pre-trained model from torchvision, and fine tune it per the task in hand.
 
+__Code: fine-tune AlexNet to classify a 2 class dataset__ []()
 
 
 
