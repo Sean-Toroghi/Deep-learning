@@ -14,7 +14,7 @@ __Codes__
 - [EfficientNets ]()
 
 
-## the advantages of CNN
+## The advantages of CNN
 Convolutional neural networks are among the most powerful architecutres in deep learning field that are beign used in a range of aras from image-related tasks (such as image classification, object detection, object segmentation, and video processing) to natural language processing and speech recognition.
 
 While CNN has several features that gives it an edge, such as weight sharing (more parameter efficient), feature extraction (learning features representation through traiing phase), hierarchcal elarning (as going deeper, the model learns low-, mid-, and high- level features), and ability to explore temporal and spatial crrelations in the data, over the past year several advancements improves it overal performance incuding:
@@ -49,10 +49,25 @@ __Code: fine-tune AlexNet to classify a 2 class dataset__ []()
 
 
 
+## VGG 
+VGG13 is the next step in advancement of CNN models, with 13 layers and 138M parameters. Other variants of VGG13 are VGG16 and VGG19. There are another version of each VGG variant with added batch normalization (VGG13_bn, VGG16_bn, and VGG19_bn). 
 
+__Code: fine-tune VGG14 to classify a 2 class dataset__ []()
 
+## Inception / GoogLeNet
 
+Inception/GoogLeNet uses a different architecture structure to advance the CNN architecture: multiple parallel convolutional layers. GoggLeNet (Inception v1) with 22 layers has only 5M parameters (compare with VGG with 13 layers has 138M parameters). This reduction in size is due to the following features and modifications:
+- The inception module – a module of several parallel convolutional layers
+- Reduce # of parameters by using 1x1 convolutions. The 1x1 conv layer does not change change the width and height of the image representation but can alter the depth of an image representation. 
+- Reduces overfitting by using global average pooling instead of a fully connected layer
+- Using auxiliary classifiers for training – for regularization and gradient stability. The auxilary layers are switch off during inference/prediction.
 
+Inception v3 has 24M parameters (compare with 5M in v1) and adds a new structural feature to the original Inception model (v1): stacked sequentially. It is basically an extention of v1 architecutre. 
+
+__Code: fine-tune Inception v1 and v3 for binary classification__ []()
+
+## ResNet and DenseNet
+ResNet introduced the concept of skip connections, which overcomes the problem of both parameter overflow and vanishing gradients. There are two kinds of residual blocks – convolutional and identity, both having skip connections. For the convolutional block, there is an added 1x1 convolutional layer, which further helps to reduce dimensionality.
 
 
 
