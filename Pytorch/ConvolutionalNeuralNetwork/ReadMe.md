@@ -1,6 +1,4 @@
-# Deep learning with Pytorch
-
-## Chapter 2: Convolution neural netwrork
+# Deep learning with Pytorch: Convolution neural netwrork
 
 __References__
 - [Book: Mastering PyTorch - Second Edition](https://learning.oreilly.com/library/view/mastering-pytorch/9781801074308)
@@ -8,4 +6,9 @@ __References__
 - [Online course: Zero to Mastery Learn PyTorch for Deep Learning](https://www.learnpytorch.io/#course-materialsoutline)
 
 __Codes__
--  
+- [LeNet]()
+- [AlexNet]()
+- [VGG]()
+- [GoogLeNet]()
+- [ResNet and DenseNet]()
+- [EfficientNets ]()
