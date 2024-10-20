@@ -12,6 +12,7 @@ __Codes__
 - [GoogLeNet]()
 - [ResNet and DenseNet]()
 - [EfficientNets ]()
+- [CNN+LSTM]()
 
 
 ## The advantages of CNN
@@ -115,6 +116,8 @@ __Video-related tasks__
 ---
 
 # CNN + LSTM
+CNNs and LSTMs can be combined to form a multimodal model that takes in images or video and outputs text. One well-known application of such a hybrid model is image captioning, where the model takes in an image and outputs a plausible textual description of the image. 
 
+This [mini-project]() employs the hybrid CNN-LSTM model to perform image captioning task. The model is trianed on COCO dataset (600k labels images, each with 5 word caption).
 
 
