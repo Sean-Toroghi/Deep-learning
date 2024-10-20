@@ -67,13 +67,54 @@ Inception v3 has 24M parameters (compare with 5M in v1) and adds a new structura
 __Code: fine-tune Inception v1 and v3 for binary classification__ []()
 
 ## ResNet and DenseNet
-ResNet introduced the concept of skip connections, which overcomes the problem of both parameter overflow and vanishing gradients. There are two kinds of residual blocks – convolutional and identity, both having skip connections. For the convolutional block, there is an added 1x1 convolutional layer, which further helps to reduce dimensionality.
+Both ResNet and DenseNet come in variants such as ResNet-50, ResNet-152, DenseNet121, DenseNet161, DenseNet169, and DenseNet201,
+__ResNet__
 
+ResNet introduced the concept of skip connections, which overcomes the problem of both parameter overflow and vanishing gradients. There are two kinds of residual blocks – convolutional and identity, both having skip connections. For the convolutional block, there is an added 1x1 convolutional layer, which further helps to reduce dimensionality. ResNet uses the identity function (by directly connecting input to output) to preserve the gradient during backpropagation (as the gradient will be 1).
 
+__DenseNet__
 
+DenseNet, or dense networks, introduced the idea of connecting every convolutional layer with every other layer within (called a dense block). And every dense block is connected to every other dense block in the overall DenseNet. A dense block is simply a module of two 3x3 densely connected convolutional layers. These dense connections ensure that every layer is receiving information from all of the preceding layers of the network. This ensures that there is a strong gradient flow from the last layer down to the very first layer.
 
+One key difference between ResNet and DenseNet is also that, in ResNet, the input was added to the output using skip connections. But in the case of DenseNet, the preceding layers’ outputs are concatenated with the current layer’s output. And the concatenation happens in the depth dimension. To controll the size of output (resulting from concatenation), a special type of block called the transition block is devised for this network. Composed of a 1x1 convolutional layer followed by a 2x2 pooling layer, this block standardizes or resets the size of the depth dimension so that the output of this block can then be fed to the subsequent dense block(s).
 
+__Code: ResNet and DenseNet fine-tuned for binary classifications__ []()
 
+## EfficientNets
+EfficientNets is one of the best-performing CNN architectures. It use ts own optimization algorithm to search for the best scalling factor for the following three parameters: 1. model depth, 2. model width, and 3. model resolution. There three parameters used to manually scaling prior to EfficientNet.
+1. model depth: though the timeline presented in the above, models add more layers to increase their power
+2. model width: the number of feature maps or channels in a convolutional layer also has increased as more advanced architecutres emerge
+3. model resoulution: going from 32x32 image in LeNet to 224x224 pixels in AlexNet (spatial dimension increase) also effect the model performance 
+
+While increasing depth leads to increse model complexity, and increasing width leads to increase capability of model to lean more fine-grained features, there is a tradeoff. Deeper models suffer from vanishing gradient, and wider model suffer from a quick accuracy saturation. Lastly, higher resoulution data does not linearly equivalent of increase model performance. 
+
+EfficientNet models find the architecture that has the right balance between depth, width, and resolution, concurrently scale all three parameters. It does so in two steps:
+1. A basic architecture (called the base network) is devised by fixing the scaling factor to 1. At this stage, the relative importance of depth, width, and resolution is decided for the given task and dataset. The base network obtained is similar to MnasNet (Mobile Neural Architecture Search Network).
+2. The optimal global scaling factor is then computed with the aim of maximizing the accuracy of the model and minimizing the number of computations (or flops).
+
+The base network is called EfficientNet B0 and the subsequent networks derived for different optimal scaling factors are called EfficientNet B1-B7.
+
+## Other architectures
+- MobileNets: the goal is to retain peformance while reducing the model size
+- CapsuleNet: revamped the convolutional units to cater to the third dimension (depth) in images.
+
+## Task specific models
+
+__Object detection and segmentaton__
+- R-CNN
+- Fast R-CNN
+- Faster R-CNN
+- Mask R-CNN
+- Keypoint-RCNN
+- ...
+
+__Video-related tasks__
+- ResNet3D
+- ResNet Mixed Convolution:
+
+---
+
+# CNN + LSTM
 
 
 
