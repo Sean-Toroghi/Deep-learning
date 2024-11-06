@@ -118,6 +118,19 @@ __Video-related tasks__
 # CNN + LSTM
 CNNs and LSTMs can be combined to form a multimodal model that takes in images or video and outputs text. One well-known application of such a hybrid model is image captioning, where the model takes in an image and outputs a plausible textual description of the image. 
 
-This [mini-project]() employs the hybrid CNN-LSTM model to perform image captioning task. The model is trained on COCO dataset (600k labels images, each with 5 word caption).
+
+__Mini-project: image captioning__
+
+This [mini-project]() employs the hybrid CNN-LSTM model to perform the image captioning task. The model is trained on COCO dataset (600k labeled-images, each with 5 word captions). The model architecture is both wide (CNN) and deep (LSTM). The conv. part of the model acts as an encoder, trained as a classification task. The last hidden layer is then extracted to be used as input for the LSTM model acting as decoder and generates the caption (text). 
+
+Tokenization of text (brief summary): transforming text string to numerical input is called tokenization. For this purpose, we first create _vocabularu_, a mapping of words to numbers. Then the text is translated into a dance vector, capturing words and its semantic context, which is called _embedding_. This whole process is called tokenization. 
+
+LSTM as decoder takes input from CNN, and generates a token. This token is passed to the next timestep as input. the list of generated tokens then translates into text (decoder). 
+
+
+
+
+<img src="https://github.com/user-attachments/assets/d05cb014-e7f1-41b2-a77c-f33e0ccb6e97" alt="image" width="300" height="250">
+
 
 
