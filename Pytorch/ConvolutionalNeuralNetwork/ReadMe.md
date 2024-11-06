@@ -125,17 +125,14 @@ This [mini-project]() employs the hybrid CNN-LSTM model to perform the image cap
 
 Tokenization of text (brief summary): transforming text string to numerical input is called tokenization. For this purpose, we first create _vocabularu_, a mapping of words to numbers. Then the text is translated into a dance vector, capturing words and its semantic context, which is called _embedding_. This whole process is called tokenization. 
 
-LSTM as decoder takes input from CNN, and generates a token. This token is passed to the next timestep as input. the list of generated tokens then translates into text (decoder). 
+LSTM as decoder takes input from CNN, and generates a token. This token is passed to the next time step as input. the list of generated tokens then translates into text (decoder). 
 
-
-
-
-
-
-
-<div style="text-align: center;">
+<p align="center">
   <img src="https://github.com/user-attachments/assets/d05cb014-e7f1-41b2-a77c-f33e0ccb6e97" alt="image" width="500">
-</div>
+</p>
+
+
+
 
 
 
