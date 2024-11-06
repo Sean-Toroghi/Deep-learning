@@ -130,7 +130,12 @@ LSTM as decoder takes input from CNN, and generates a token. This token is passe
 
 
 
-<img src="https://github.com/user-attachments/assets/d05cb014-e7f1-41b2-a77c-f33e0ccb6e97" alt="image" width="300" height="250">
+
+
+
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/d05cb014-e7f1-41b2-a77c-f33e0ccb6e97" alt="image" width="500">
+</div>
 
 
 
