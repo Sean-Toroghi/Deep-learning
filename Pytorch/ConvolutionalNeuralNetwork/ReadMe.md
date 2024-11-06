@@ -1,4 +1,4 @@
-# Deep learning with Pytorch: Convolution neural netwrork
+# Deep learning with Pytorch: Convolution neural network
 
 __References__
 - [Book: Mastering PyTorch - Second Edition](https://learning.oreilly.com/library/view/mastering-pytorch/9781801074308)
@@ -18,19 +18,19 @@ __Codes__
 ## The advantages of CNN
 Convolutional neural networks are among the most powerful architecutres in deep learning field that are beign used in a range of areas from image-related tasks (such as image classification, object detection, object segmentation, and video processing) to natural language processing and speech recognition.
 
-While CNN has several features that give it an edge, such as weight sharing (more parameter efficient), feature extraction (learning features representation through traiing phase), hierarchical learning (as going deeper, the model learns low-, mid-, and high- level features), and ability to explore temporal and spatial correlations in the data, over the past year several advancements improves its overall performance including:
+While CNN has several features that give it an edge, such as weight sharing (more parameter efficient), feature extraction (learning features representation through traiing phase), hierarchical learning (as going deeper, the model learns low-, mid-, and high- level features), and the ability to explore temporal and spatial correlations in the data, over the past year several advancements improves its overall performance including:
 - employ Adam for better parameter optimization,
 - employ better activation and loss functions, such as employing ReLU,
 - introduce batch normalization and dropout as means for regularization.
 Furthermore, adopting several structural improvements to model architecture helps the model gain more power to generalize better results, including:
 - Employing different kernel sizes throughout the model helps to explore different levels of visual features in input data.
-- using width-base CNN, in which width is the number of channels or feature maps in the data or features extracted from the data.
+- using width-based CNN, in which width is the number of channels or feature maps in the data or features extracted from the data.
 - using depth-based CNN, in which depth is the number of layers. The model uses several convolutional blocks, each has several layers.
-- employ multi-path-based CNN, in which through shortcut connetions between blocks of convolution results in better flow of information across several layers.
+- employ multi-path-based CNN, in which through shortcut connections between blocks of convolution results in better flow of information across several layers.
 
-# CNN model architectures through history
+# CNN model architecture through history
 
-CNN model architecture has evolved over the past thirty years. The initial architecture was introduced in 1989 (ConvNet) and later LeNet in 1998. With a large gap (due to the lack of a proper dataset, and low computational power) the next big move was the introduction of lexNet in 2012. After that, over 8 years several advancements were made and each resulted in the introduction of a new model architecture;
+CNN model architecture has evolved over the past thirty years. The initial architecture was introduced in 1989 (ConvNet) and later LeNet in 1998. With a large gap (due to the lack of a proper dataset, and low computational power), the next big move was the introduction of lexNet in 2012. After that, over 8 years several advancements were made and each resulted in the introduction of a new model architecture.
 - 2014: GoogLeNet, Inception, and VGG
 - 2015: ResNet
 - 2016: DenseNet
@@ -84,10 +84,10 @@ __Code: ResNet and DenseNet fine-tuned for binary classifications__ []()
 ## EfficientNets
 EfficientNets is one of the best-performing CNN architectures. It use ts own optimization algorithm to search for the best scaling factor for the following three parameters: 1. model depth, 2. model width, and 3. model resolution. There three parameters used to manually scaling prior to EfficientNet.
 1. model depth: though the timeline presented in the above, models add more layers to increase their power
-2. model width: the number of feature maps or channels in a convolutional layer also has increased as more advanced architecutres emerge
-3. model resoulution: going from 32x32 image in LeNet to 224x224 pixels in AlexNet (spatial dimension increase) also effect the model performance 
+2. model width: the number of feature maps or channels in a convolutional layer has also increased as more advanced architects emerge
+3. model resolution: going from 32x32 image in LeNet to 224x224 pixels in AlexNet (spatial dimension increase) also affects the model performance 
 
-While increasing depth leads to increse model complexity, and increasing width leads to increase capability of model to lean more fine-grained features, there is a tradeoff. Deeper models suffer from vanishing gradient, and wider model suffer from a quick accuracy saturation. Lastly, higher resoulution data does not linearly equivalent of increase model performance. 
+While increasing depth leads to increased model complexity, and increasing width leads to increased capability of model to lean more fine-grained features, there is a tradeoff. Deeper models suffer from vanishing gradient, and wider models suffer from a quick accuracy saturation. Lastly, higher resolution data does not linearly equivalent of increased model performance. 
 
 EfficientNet models find the architecture that has the right balance between depth, width, and resolution, concurrently scale all three parameters. It does so in two steps:
 1. A basic architecture (called the base network) is devised by fixing the scaling factor to 1. At this stage, the relative importance of depth, width, and resolution is decided for the given task and dataset. The base network obtained is similar to MnasNet (Mobile Neural Architecture Search Network).
@@ -96,12 +96,12 @@ EfficientNet models find the architecture that has the right balance between dep
 The base network is called EfficientNet B0 and the subsequent networks derived for different optimal scaling factors are called EfficientNet B1-B7.
 
 ## Other architectures
-- MobileNets: the goal is to retain peformance while reducing the model size
+- MobileNets: the goal is to retain performance while reducing the model size
 - CapsuleNet: revamped the convolutional units to cater to the third dimension (depth) in images.
 
 ## Task specific models
 
-__Object detection and segmentaton__
+__Object detection and segmentation__
 - R-CNN
 - Fast R-CNN
 - Faster R-CNN
@@ -118,6 +118,6 @@ __Video-related tasks__
 # CNN + LSTM
 CNNs and LSTMs can be combined to form a multimodal model that takes in images or video and outputs text. One well-known application of such a hybrid model is image captioning, where the model takes in an image and outputs a plausible textual description of the image. 
 
-This [mini-project]() employs the hybrid CNN-LSTM model to perform image captioning task. The model is trianed on COCO dataset (600k labels images, each with 5 word caption).
+This [mini-project]() employs the hybrid CNN-LSTM model to perform image captioning task. The model is trained on COCO dataset (600k labels images, each with 5 word caption).
 
 
