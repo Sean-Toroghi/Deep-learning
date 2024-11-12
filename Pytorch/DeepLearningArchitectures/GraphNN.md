@@ -43,6 +43,9 @@ PinSAGE is an extension of GraphSAGE developed and is used by Pinterest as a par
 
 
 
+---
+# Project
+- []()
 
 
 
@@ -50,9 +53,12 @@ PinSAGE is an extension of GraphSAGE developed and is used by Pinterest as a par
 
 
 
-
-
-
+---
+__Refernces__
+- [A Gentle Introduction to Graph Neural Networks](https://distill.pub/2021/gnn-intro/)
+- [Book: Ch.6 - Mastering PyTorch - Second Edition Ashish Ranjan Jha ](https://learning.oreilly.com/library/view/mastering-pytorch/9781801074308)
+- [Course at Penn: Graph Neural Networks ESE 5140](https://gnn.seas.upenn.edu/lectures/lecture-1/)
+- [Pytorch Geometric](https://pytorch-geometric.readthedocs.io/en/latest/notes/colabs.html)
 
 
 
