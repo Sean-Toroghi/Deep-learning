@@ -58,8 +58,8 @@ PinSAGE is an extension of GraphSAGE developed and is used by Pinterest as a par
 
 ---
 <mark>Status</mark>
-- [x] Summary
-- [ ] Project added
+- [ ] Summary
+- [X] Project added
 - [ ] Finalized
 ---
 
