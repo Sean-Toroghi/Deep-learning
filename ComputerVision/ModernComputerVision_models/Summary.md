@@ -11,4 +11,9 @@ __Table of contents__
 ---
 # ConvNeXt
 
-The ConvNeXt backbone architecture was introduced in 2022 by facebook.
+The ConvNeXt is a backbone architecture was introduced in 2022 by facebook. The core idea behind ConvNeXt was to re-examine the design choices of traditional CNNs (like ResNet) and "modernize" them by incorporating design elements that have proven successful in Vision Transformers (ViTs), without actually becoming a Transformer.
+
+Changes result in the ConvNeXT backbone architecture could be divided into two main categories: macro and micro. Next section provides a summary of improvement at each level.
+## Macro level (high-level structure)
+
+## Micro level (block-level structure)
