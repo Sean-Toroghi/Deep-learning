@@ -21,6 +21,12 @@ Perhaps more optimal ratio is likely to exist, as there has been ongoing researc
 
 ## Stem cell structure
 
+The first layer of a model reduces the size of an input image. This is an efficient approach, since there are the inherent redundancy in natural images. The ViT model architecture a _patchify_ strragy is employed as stem cell (with large kernel size and non-overlapping conv). Swin-Transformer employs the same _patchify_ strategy with much smaller kernel size (4x4). The replacement of Res-Net stem cell with a 4x4 kernel and stride 4 convolutional layer increases the accuracy from 79.4% to 79.5%. 
+
+__Note__: 
+- Vision Transformers (ViTs) process entire images as patches and apply self-attention globally, meaning every token (patch) interacts with all others. This is a downside of ViT, as it creates a quadratic complexy.
+- Swin Transformer divides the image into smaller windows and applies self-attention inside each window separately. This change makes _patchify_ approach applicable for large images as it recudes the complexity of the model from quadratic $O(n^2)$ to linear $O(n)$.
+- Furthermore, the Swin-Transormer maintains the information flow when transitioning from one windows to the next one by introducing the concept of _shifting windows_, which allows cross window connections.
 
 ---
 # ConvNeXt
