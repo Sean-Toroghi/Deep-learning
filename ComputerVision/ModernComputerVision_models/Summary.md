@@ -4,8 +4,13 @@ Since 2020, the field of computer vision has undergone transformative changes, l
 
 --- 
 
-__Table of contents__
+## Table of contents
+- Swin-Transformr
 - ConvNeXt backbone architecture
+
+
+---
+---
 
 # Swin Transformer
 
@@ -29,6 +34,8 @@ __Note__:
 - Furthermore, the Swin-Transormer maintains the information flow when transitioning from one windows to the next one by introducing the concept of _shifting windows_, which allows cross window connections.
 
 ---
+---
+
 # ConvNeXt
 
 The ConvNeXt is a backbone architecture was introduced in 2022 by facebook. The core idea behind ConvNeXt was to re-examine the design choices of traditional CNNs (like ResNet) and "modernize" them by incorporating design elements that have proven successful in Vision Transformers (ViTs), without actually becoming a Transformer.
