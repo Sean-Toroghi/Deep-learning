@@ -14,7 +14,13 @@ Swin Tansformer follows ConvNets approach using multi-stage design, in which eac
 2. stem cell structure
 
 ## Stage compute ratio
-Changing the stage computation ratio of the ResNet-50 (change number of block in each stage from (3, 4, 6, 3) to (3, 3, 9, 3)), improves its accuracy from 78.8% to 79.4%. This is the concept that is being ussed in Swin Transoformer (1:1:3:1 in small version and 1:1:9:1 in large version).
+Changing the stage computation ratio of the ResNet-50 (change number of block in each stage from (3, 4, 6, 3) to (3, 3, 9, 3)), improves its accuracy from 78.8% to 79.4%. This is the concept that is being used in Swin Transoformer (1:1:3:1 in small version and 1:1:9:1 in large version). 
+
+Perhaps more optimal ratio is likely to exist, as there has been ongoing research about the optimal distribution of computation. Check the following paper for more information: 
+- Designing Network Design Spaces (2020) [arxiv](https://arxiv.org/pdf/2003.13678)
+
+## Stem cell structure
+
 
 ---
 # ConvNeXt
