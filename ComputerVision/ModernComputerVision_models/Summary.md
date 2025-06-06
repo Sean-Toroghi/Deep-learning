@@ -67,10 +67,12 @@ Mimicking the number of activation functions in Transformers, by eliminating all
 
 ### Reduce the number of normalization layers
 
-Transoformers compare with ResNet has fewer batch-normalization layers. Having a single BN layer (removing two BN layers) before the conv 1 1 layers increases the accuracy of the ConvNeXt to 81.4% (0.1% point increase). 
+Transoformers compare with ResNet has fewer batch-normalization layers. Having a single BN layer (removing two BN layers) before the conv $1x1$ layers increases the accuracy of the ConvNeXt to 81.4% (0.1% point increase). 
 
 ### Replacing BN layers with LN
 While BN layers improves the convergence and reduces overfitting, it also has detrimental effect of the model's performance <sup>[1](#1)</sup>.
 
 __References__
 1. <a name="1">Yuxin Wu and Justin Johnson. Rethinking "batch" in batch norm. arXiv:2105.07576, 2021</a>.
+2. <a name="2"></a>.
+
