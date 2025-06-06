@@ -63,6 +63,14 @@ While the original transformers model and ocnventional convolution models all us
 ### Reduce number of activation funtions
 Comparing the activation function placement and cocunt in the Transformers and ResNet architectures shows that the Transformer architecure employ much less number of activation functions. In a Transfomers block there are two activation functions in each block (one after each of the two FFN layers). In the ResNET, after each convolution layer, there is an activation function. This mean each ResNet block has multiple activation function.
 
-Mimicking the number of activation functions in Transformers, by eliminating all of the activation function except the one between two 1x1 layers increases the accuracy of ConvNeXt by 0.7% to  81.3%.
+Mimicking the number of activation functions in Transformers, by eliminating all of the activation function except the one between two 1x1 layers increases the accuracy of the ConvNeXt by 0.7% point to 81.3%.
 
 ### Reduce the number of normalization layers
+
+Transoformers compare with ResNet has fewer batch-normalization layers. Having a single BN layer (removing two BN layers) before the conv 1 1 layers increases the accuracy of the ConvNeXt to 81.4% (0.1% point increase). 
+
+### Replacing BN layers with LN
+While BN layers improves the convergence and reduces overfitting, it also has detrimental effect of the model's performance <sup>1</sup>.
+
+__References__
+1. Yuxin Wu and Justin Johnson. Rethinking "batch" in batch norm. arXiv:2105.07576, 2021.
