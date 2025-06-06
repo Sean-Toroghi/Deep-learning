@@ -67,12 +67,23 @@ Mimicking the number of activation functions in Transformers, by eliminating all
 
 ### Reduce the number of normalization layers
 
-Transoformers compare with ResNet has fewer batch-normalization layers. Having a single BN layer (removing two BN layers) before the conv $1x1$ layers increases the accuracy of the ConvNeXt to 81.4% (0.1% point increase). 
+Transoformers compare with ResNet has fewer batch-normalization layers. Having a single BN layer (removing two BN layers) before the conv 1x1 layers increases the accuracy of the ConvNeXt to 81.4% (0.1% point increase). 
 
 ### Replacing BN layers with LN
-While BN layers improves the convergence and reduces overfitting, it also has detrimental effect of the model's performance <sup>[1](#1)</sup>.
+While BN layers improves the convergence and reduces overfitting, it also has detrimental effect of the model's performance <sup>[1](#1)</sup>. While it has been reported substituting BN with LN results in suboptimal performance <sup>[2](#2)</sup>, this replacement in ConvNeXt not only does not negatively effect training, but also slightly improves accuracy to 81.5%. Also adding normalization layers wherever spatial  resolution is changed can help stablize training.
+
+### Seperating the downsampling layers
+Employ 2x2 conv layers with stride 2 for spatial downsampling (similar to Swin-Transformer) improves the accuracy to 82%.
+
+## ConvNeXt variants
+ConvNeXt model comes in five variants: T, S, B, L, and XL. The T and B versions are the upgrades/modernizations applies to ResNet-50 and ResNet-200 respectively. The variants are differ in number of blocks and channels. A summary of configurations is shown below:-
+- ConvNeXt-T: C = (96192384768), B = (3393)
+- ConvNeXt-S: C = (96192384768), B = (33273)
+- ConvNeXt-B: C = (1282565121024), B = (33273)
+- ConvNeXt-L: C = (1923847681536), B = (33273)
+- ConvNeXt-XL: C = (25651210242048), B = (33273
 
 __References__
 1. <a name="1">Yuxin Wu and Justin Johnson. Rethinking "batch" in batch norm. arXiv:2105.07576, 2021</a>.
-2. <a name="2"></a>.
+2. <a name="2">Yuxin Wu and Kaiming He. Group normalization. In ECCV, 2018</a>.
 
