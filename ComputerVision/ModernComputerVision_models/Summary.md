@@ -5,15 +5,15 @@ Since 2020, the field of computer vision has undergone transformative changes, l
 ---  
 
 ## Table of contents
-- Swin-Transformr
-- ConvNeXt backbone architecture
-- MetaFormer for Vision
+- [Swin-Transformr](#swin)
+- [ConvNeXt backbone architecture](#convnext)
+- [MetaFormer for Vision](#metaformer)
 
 
 ---
 ---
 
-# Swin Transformer
+# <a name="swin">Swin Transformer</a>
 
 Swin Tansformer follows ConvNets approach using multi-stage design, in which each stage has different feature map resolution. Two key design consideration in the Swin Transformer model are:
 1. stage compute ratio
@@ -37,7 +37,7 @@ __Note__:
 ---
 ---
 
-# ConvNeXt
+# <a name="convnext">ConvNeXt</a>
 
 The ConvNeXt is a backbone architecture was introduced in 2022 by facebook. The core idea behind ConvNeXt was to re-examine the design choices of traditional CNNs (like ResNet) and "modernize" them by incorporating design elements that have proven successful in Vision Transformers (ViTs) and Swin-Transformer, without actually becoming a Transformer.
 
@@ -89,7 +89,7 @@ ConvNeXt model comes in five variants: T, S, B, L, and XL. The T and B versions 
 ---
 ---
 
-# MetaFormer for Vision
+# <a name="metaformer">MetaFormer for Vision</a>
 
 
 
