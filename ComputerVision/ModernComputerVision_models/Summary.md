@@ -7,6 +7,7 @@ Since 2020, the field of computer vision has undergone transformative changes, l
 ## Table of contents
 - Swin-Transformr
 - ConvNeXt backbone architecture
+- MetaFormer for Vision
 
 
 ---
@@ -83,7 +84,17 @@ ConvNeXt model comes in five variants: T, S, B, L, and XL. The T and B versions 
 - ConvNeXt-L: C = (1923847681536), B = (33273)
 - ConvNeXt-XL: C = (25651210242048), B = (33273
 
+
+
+---
+---
+
+# MetaFormer for Vision
+
+
+
+---
+---
 __References__
 1. <a name="1">Yuxin Wu and Justin Johnson. Rethinking "batch" in batch norm. arXiv:2105.07576, 2021</a>.
 2. <a name="2">Yuxin Wu and Kaiming He. Group normalization. In ECCV, 2018</a>.
-
