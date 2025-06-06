@@ -4,7 +4,7 @@ Since 2020, the field of computer vision has undergone transformative changes, l
 
 ---  
 
-## Table of contents
+## <a name="table">Table of contents</a>
 - [Swin-Transformr](#swin)
 - [ConvNeXt backbone architecture](#convnext)
 - [MetaFormer for Vision](#metaformer)
@@ -13,7 +13,7 @@ Since 2020, the field of computer vision has undergone transformative changes, l
 ---
 ---
 
-# <a name="swin">Swin Transformer</a>
+# <a name="swin">[Swin Transformer](#table)</a>
 
 Swin Tansformer follows ConvNets approach using multi-stage design, in which each stage has different feature map resolution. Two key design consideration in the Swin Transformer model are:
 1. stage compute ratio
