@@ -37,7 +37,7 @@ __Note__:
 ---
 ---
 
-# <a name="convnext">ConvNeXt</a>
+# <a name="convnext">[ConvNeXt](#table)</a>
 
 The ConvNeXt is a backbone architecture was introduced in 2022 by facebook. The core idea behind ConvNeXt was to re-examine the design choices of traditional CNNs (like ResNet) and "modernize" them by incorporating design elements that have proven successful in Vision Transformers (ViTs) and Swin-Transformer, without actually becoming a Transformer.
 
@@ -89,7 +89,7 @@ ConvNeXt model comes in five variants: T, S, B, L, and XL. The T and B versions 
 ---
 ---
 
-# <a name="metaformer">MetaFormer for Vision</a>
+# <a name="metaformer">[MetaFormer for Vision](#table)</a>
 
 
 
