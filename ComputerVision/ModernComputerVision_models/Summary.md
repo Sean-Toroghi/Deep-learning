@@ -40,9 +40,29 @@ __Note__:
 
 The ConvNeXt is a backbone architecture was introduced in 2022 by facebook. The core idea behind ConvNeXt was to re-examine the design choices of traditional CNNs (like ResNet) and "modernize" them by incorporating design elements that have proven successful in Vision Transformers (ViTs) and Swin-Transformer, without actually becoming a Transformer.
 
-Changes result in the ConvNeXT backbone architecture could be divided into two main categories: macro and micro. Next section provides a summary of improvement at each level.
+To develop the ConvNeXt architecture, authors started from ResNeXt model. Changes result in the ConvNeXT backbone architecture could be divided into two main categories: macro and micro. Next section provides a summary of improvement at each level.
 - Macro level (high-level structure)
 - Micro level (block-level structure)
 
-## Development of ConvNeXt
-To develop the ConvNeXt architecture, authors started from ResNeXt model.
+---
+## Macro-level development of ConvNeXt
+
+---
+## Micro level development of ConvNeXt
+
+At the micro level, the changes have been made are at layer level. The summary of changes are as following:
+- change activation from ReLU to GeLU
+- redue number of activation fucntions
+- reduce number of normalization layers
+- substitude batch normalization with layer normalization
+- seperating the downsampling layers
+
+### change of activation function
+While the original transformers model and ocnventional convolution models all use ReLU activatio function, modern models including BERT, GPT-2, and ViT replace the ReLU with Gaussian Error Linear Unit (GELU). GELU can be seen as a smoother version of ReLU. In the case of ConvNeXt, the replacement of ReLU to GELU does not result in any change in accuracy (maintain at 80.6%). 
+
+### Reduce number of activation funtions
+Comparing the activation function placement and cocunt in the Transformers and ResNet architectures shows that the Transformer architecure employ much less number of activation functions. In a Transfomers block there are two activation functions in each block (one after each of the two FFN layers). In the ResNET, after each convolution layer, there is an activation function. This mean each ResNet block has multiple activation function.
+
+Mimicking the number of activation functions in Transformers, by eliminating all of the activation function except the one between two 1x1 layers increases the accuracy of ConvNeXt by 0.7% to  81.3%.
+
+### Reduce the number of normalization layers
