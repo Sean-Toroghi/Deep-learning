@@ -76,7 +76,7 @@ While BN layers improves the convergence and reduces overfitting, it also has de
 Employ 2x2 conv layers with stride 2 for spatial downsampling (similar to Swin-Transformer) improves the accuracy to 82%.
 
 ## ConvNeXt variants
-ConvNeXt model comes in five variants: T, S, B, L, and XL. The T and B versions are the upgrades/modernizations applies to ResNet-50 and ResNet-200 respectively. The variants are differ in number of blocks and channels. A summary of configurations is shown below:-
+ConvNeXt model comes in five variants: T, S, B, L, and XL. The T and B versions are the upgrades/modernizations applies to ResNet-50 and ResNet-200 respectively. The variants are differ in number of blocks (B) and channels (C). A summary of configurations is shown below:-
 - ConvNeXt-T: C = (96192384768), B = (3393)
 - ConvNeXt-S: C = (96192384768), B = (33273)
 - ConvNeXt-B: C = (1282565121024), B = (33273)
