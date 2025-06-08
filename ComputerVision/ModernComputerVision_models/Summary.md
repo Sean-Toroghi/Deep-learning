@@ -99,7 +99,7 @@ ConvNeXt model comes in five variants: T, S, B, L, and XL. The T and B versions 
 
 ConvNeXt V2 employs several features, including a fully convolutional masked autoencoder framework and a new Global Response Normalization (GRN) layer, added to the original ConvNext architecture. These additions enhances inter-channel feature competition, resulting in improvement of the performance in variety of tasks including image- classification, detection, and also segmentation.  
 
-Furthermore, the second verison of the ConvNeXt model is compatible with masked autoencoders (MAE) technique <sup>[4](#4)</sup> (a self-suprevised training approach). A study by Jing et al. (2022) <sup>[3](#3)</sup> shows training a ConvNets with mask-based self-supervised learning can be difficult.
+Furthermore, the second verison of the ConvNeXt model is compatible with masked autoencoders (MAE) technique (a self-suprevised training approach)  <sup>[4](#4)</sup>. A study by Jing et al. (2022) shows training a ConvNets with mask-based self-supervised learning can be difficult <sup>[3](#3)</sup>.
 
 ---
 ---
