@@ -121,12 +121,14 @@ To address the challenge of feature collapse, authors propose a new response nor
 3. feature calibration: calibrate the original input responses using  the computed feature normalization scores
 
   ```python
-  # gamma, beta: learnable affine transform parameters
-  # X: input of shape (N,H,W,C)
-  gx = torch.norm(X, p=2, dim=(1,2), keepdim=True)
-  nx = gx / (gx.mean(dim=-1, keepdim=True)+1e-6)
-  return gamma * (X * nx) + beta + X
+  def GRN(X):
+    # gamma, beta: learnable affine transform parameters
+    # X: input of shape (N,H,W,C)
+    gx = torch.norm(X, p=2, dim=(1,2), keepdim=True)
+    nx = gx / (gx.mean(dim=-1, keepdim=True)+1e-6)
+    return gamma * (X * nx) + beta + X
   ```
+
 
 
 
