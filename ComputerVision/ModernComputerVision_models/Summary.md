@@ -101,6 +101,36 @@ ConvNeXt V2 employs several features, including a fully convolutional masked aut
 
 Furthermore, the second verison of the ConvNeXt model is compatible with masked autoencoders (MAE) technique (a self-suprevised training approach)  <sup>[4](#4)</sup>. A study by Jing et al. (2022) shows training a ConvNets with mask-based self-supervised learning can be difficult <sup>[3](#3)</sup>.
 
+## ConvNeXt v2: fully convoluitonal masked autoencoder
+This model employs a simple but effective self-supervised technique: geneate learning signal by heavily mask the input image (ratio of 0.6 ), and then the objective is for the model to  predict the masked areas, given the remaining context. This masking is applied to the last downsampled stage (32x32 patch), and then an upsampling is performed to reach the original image size. 
+
+__Agmentation__: at this stage only augmentation that is used is random resized cropping.
+
+The model architecture consists of two parts: __encoder and decoder__.
+
+- ___Encoder__: for encoder the model employs ConvNeXt. To prevent the model from learning shortcuts (copy and paste information from masked regions), the authors converted the standard convolution layer in the encoder with the submanifold sparse convolution. This change enables the model to operate only on the visible data points.
+- __Decoder__: the authors employ a single ConvNeXt block decoder, as a light version of ConvNeXt. This choice of decoder, instead of a hierarchical decoders or transformers, forms an asymmetric encoder-decoder architecture overall while deliver high fine-tunning accuracy and reduced pre-training time.
+- __Reconstruction an error__: similar to MAE, the authors employ the mean squared error (MSE) between the reconstructed and target images. 
+
+## Global response normalization (GRN)
+To make the training more effective in conjunction with the ConvNeXt architecture, authors proposed a new technique: global response normalization. The original fully convolutional masked autoencode pre-trained ConvNeXt-Based model suffers from feature collapse (many dead or saturated feature maps leading to the activation becomes redundant across channels). To prevent feature collapse, we need to find a way to diversify the features during the learning phase.
+
+To address the challenge of feature collapse, authors propose a new response normalization layer called global response normalization (GRN), which aims to increase the contrast and selectivity of channels. A GRN unit consists of three steps: 
+1. global feature aggregation: L-2 norm
+2. feature normalization: standard divisive normalization
+3. feature calibration: calibrate the original input responses using  the computed feature normalization scores
+
+  ```python
+  # gamma, beta: learnable affine transform parameters
+  # X: input of shape (N,H,W,C)
+  gx = torch.norm(X, p=2, dim=(1,2), keepdim=True)
+  nx = gx / (gx.mean(dim=-1, keepdim=True)+1e-6)
+  return gamma * (X * nx) + beta + X
+  ```
+
+
+
+
 ---
 ---
 
