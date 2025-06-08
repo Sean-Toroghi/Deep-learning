@@ -1,12 +1,18 @@
-# New advancement in computer vision: overview
+# Advancement in computer vision: overview
 
 Since 2020, the field of computer vision has undergone transformative changes, largely driven by the introduction of transformer-based architectures and the consolidation efforts of projects like TIMM, which provide a unified reference for the community. These developments have spurred innovative approaches and steady advancements. While individual improvements may seem incremental and not headline-grabbing, their cumulative impact has been profound. In this repository, I compile a collection of these incremental enhancements that I have found valuable for modeling computer vision projects.
+
+Three factors effect the performance of a visual representation learning system, in general:
+1. model architecture
+2. training method
+3. available data used for training
 
 ---  
 
 ## <a name="table">Table of contents</a>
 - [Swin-Transformr](#swin)
 - [ConvNeXt backbone architecture](#convnext)
+- [ConvNeXt V2](#connext2)
 - [MetaFormer for Vision](#metaformer)
 
 
@@ -89,8 +95,16 @@ ConvNeXt model comes in five variants: T, S, B, L, and XL. The T and B versions 
 ---
 ---
 
-# <a name="metaformer">[MetaFormer for Vision](#table)</a>
+# <a name="convnext2">[ConvNeXt V2](#table)</a>
 
+ConvNeXt V2 employs several features, including a fully convolutional masked autoencoder framework and a new Global Response Normalization (GRN) layer, added to the original ConvNext architecture. These additions enhances inter-channel feature competition, resulting in improvement of the performance in variety of tasks including image- classification, detection, and also segmentation.  
+
+Furthermore, the second verison of the ConvNeXt model is compatible with masked autoencoders (MAE) technique <sup>[4](#4)</sup> (a self-suprevised training approach). A study by Jing et al. (2022) <sup>[3](#3)</sup> shows training a ConvNets with mask-based self-supervised learning can be difficult.
+
+---
+---
+
+# <a name="metaformer">[MetaFormer for Vision](#table)</a>
 
 
 ---
@@ -98,3 +112,5 @@ ConvNeXt model comes in five variants: T, S, B, L, and XL. The T and B versions 
 __References__
 1. <a name="1">Yuxin Wu and Justin Johnson. Rethinking "batch" in batch norm. arXiv:2105.07576, 2021</a>.
 2. <a name="2">Yuxin Wu and Kaiming He. Group normalization. In ECCV, 2018</a>.
+3. <a name="3">Li Jing, Jiachen Zhu, and Yann LeCun. Masked siamese convnets. arXiv preprint arXiv:2206.07700, 2022</a>.
+4. <a name="4">Kaiming He, Xinlei Chen, Saining Xie, Yanghao Li, Piotr Doll´ ar, and Ross Girshick. Masked autoencoders are scalable vision learners. In CVPR, 2022</a>.
