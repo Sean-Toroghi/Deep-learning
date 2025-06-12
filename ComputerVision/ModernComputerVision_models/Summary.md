@@ -14,6 +14,7 @@ Three factors effect the performance of a visual representation learning system,
 - [ConvNeXt backbone architecture](#convnext)
 - [ConvNeXt V2](#connext2)
 - [MetaFormer for Vision](#metaformer)
+- [EVA](#eva)
 
 
 ---
@@ -136,7 +137,21 @@ To address the challenge of feature collapse, authors propose a new response nor
 ---
 ---
 
-# <a name="metaformer">[MetaFormer for Vision](#table)</a>
+# <a name="metaformer">[Paper (2022 - revised 2024) MetaFormer Baselines for Vision](#table)</a>
+
+
+---
+---
+# <a name="eva">[Paper (2022) EVA: Exploring the Limits of Masked Visual Representation Learning at Scale
+](#table)</a>
+
+
+
+
+
+
+
+
 
 
 ---
